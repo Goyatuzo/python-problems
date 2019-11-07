@@ -11,4 +11,12 @@ def quantify_name(name: str, idx: int) -> int:
 
 if __name__ == '__main__':
     with open('./names.txt', 'r') as c_file:
-        content = c_file.read()
+        content = c_file.read().replace('"', '').split(',')
+
+    content.sort()
+
+    total = 0
+    for idx, i in enumerate(content):
+        total += quantify_name(i, idx + 1)
+
+    print(total)

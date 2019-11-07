@@ -1,3 +1,4 @@
+# https://www.hackerrank.com/contests/projecteuler/challenges/euler022/problem
 
 def quantify_name(name: str, idx: int) -> int:
     # Since a is 1

@@ -7,5 +7,8 @@ class TestSmallsetMultiple(unittest.TestCase):
         self.assertEqual(6, solve(3))
         self.assertEqual(2520, solve(10))
 
+    def test_extra(self):
+        self.assertEqual(232792560, solve(20))
+
 if __name__ == '__main__':
     unittest.main()

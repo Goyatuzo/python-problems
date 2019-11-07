@@ -8,3 +8,7 @@ def quantify_name(name: str, idx: int) -> int:
         name_total += ord(letter) - a_code
 
     return name_total * idx
+
+if __name__ == '__main__':
+    with open('./names.txt', 'r') as c_file:
+        content = c_file.read()

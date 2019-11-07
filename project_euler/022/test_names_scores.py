@@ -1,6 +1,6 @@
 import unittest
 
-from names_scores import *
+from names_scores import quantify_name
 
 class TestNamesScores(unittest.TestCase):
     def test_name(self):

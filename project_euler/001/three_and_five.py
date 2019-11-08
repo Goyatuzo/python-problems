@@ -1,3 +1,5 @@
+# https://www.hackerrank.com/contests/projecteuler/challenges/euler022/problem
+
 
 def solve_unoptimized(n: int) -> int:
     n -= 1
@@ -25,7 +27,8 @@ def solve_unoptimized(n: int) -> int:
 
     multiples_of_fifteen = fifteen_n / 15
 
-    fifteen_sum = int((15 / 2) * multiples_of_fifteen * (multiples_of_fifteen + 1))
+    fifteen_sum = int((15 / 2) * multiples_of_fifteen *
+                      (multiples_of_fifteen + 1))
 
     return three_sum + five_sum - fifteen_sum
 

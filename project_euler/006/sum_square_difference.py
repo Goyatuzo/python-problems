@@ -11,19 +11,15 @@ def difference(n):
     :param n: The list of numbers to evaluate the sum square difference."""
     differences = []
 
-    # Map all values of n to int.
-    n = map(int, n)
-    # First evaluate the sum square difference of the highest value in the list.
-    highest = max(n)
+    # sum of the squares
+    sum_of_squares = (1 / 6) * n * (1 + n) * (1 + 2 * n)
+    
+    # square of the sums
+    sum_base = (1 / 2) * n * (n + 1)
+    square_of_sums = sum_base ** 2
 
-    # Keep track of each point in the iteration to make computation simpler.
-    sum_square = 0
-    square_sum = 0
+    # Diff between sum of squares and square of the sum
+    return abs(int(sum_of_squares - square_of_sums))
 
-    for i in range(1, highest+1):
-        sum_square += i ** 2
-        square_sum += i
-
-        differences.append(square_sum ** 2 - sum_square)
-
-    return [differences[i-1] for i in n]
+if __name__ == '__main__':
+    print(difference(100))

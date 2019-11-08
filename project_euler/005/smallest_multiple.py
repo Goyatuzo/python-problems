@@ -42,3 +42,6 @@ def solve(n: int) -> int:
         result *= prime ** exp
     
     return result
+
+if __name__ == '__main__':
+    print(solve(20))

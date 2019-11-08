@@ -17,5 +17,8 @@ class TestThreeAndFive(unittest.TestCase):
         self.assertEqual(14, solve_unoptimized(8))
         self.assertEqual(14, solve_unoptimized(9))
 
+    def test_fifteen(self):
+        self.assertEqual(60, solve_unoptimized(16))
+
 if __name__ == '__main__':
     unittest.main()

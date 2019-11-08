@@ -22,3 +22,6 @@ def get_nth_primes(n):
     primes = get_primes(max(n) * 100) # Find the largest value to be computed and make list size fit to that.
 
     return [primes[i - 1] for i in n]
+
+if __name__ == '__main__':
+    print(get_nth_primes([10001]))

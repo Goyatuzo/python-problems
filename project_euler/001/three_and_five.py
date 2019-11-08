@@ -1,4 +1,4 @@
-# https://www.hackerrank.com/contests/projecteuler/challenges/euler022/problem
+# https://www.hackerrank.com/contests/projecteuler/challenges/euler001/problem
 
 
 def solve_unoptimized(n: int) -> int:

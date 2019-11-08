@@ -28,3 +28,6 @@ def solve(n):
         divisor += 1
 
     return n
+
+if __name__ == '__main__':
+    print(solve(600851475143))

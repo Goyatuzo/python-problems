@@ -23,3 +23,6 @@ def solve(n):
     sequence = fib(n)
 
     return sum([i for i in sequence if i % 2 == 0])
+
+if __name__ == '__main__':
+    print(solve(4000000))

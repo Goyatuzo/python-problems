@@ -7,8 +7,6 @@ from helpers.sieve import Sieve
 def solve_first(n: int):
     s = Sieve()
     primes = s.primes(n, False)
-
-    print(primes)
     return sum(primes)
 
 

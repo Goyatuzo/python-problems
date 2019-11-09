@@ -15,16 +15,9 @@ def get_primes(n):
 
     return primes
 
-def sum_primes(n):
-    n = map(int, n)
+def solve_first(n: int):
+    primes = get_primes(n)
+    return sum(primes)
 
-    max_prime = max(n)
-
-    primes = get_primes(max_prime)
-
-    sums = []
-
-    for i in n:
-        sums.append(sum([j for j in primes if i >= j]))
-
-    return sums
+if __name__ == '__main__':
+    print(solve_first(2000000))

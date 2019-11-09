@@ -1,30 +1,14 @@
-def get_primes(n):
-    sieve = {}
-    primes = []
+import sys
+sys.path.append(sys.path[0] + '/../../')
 
-    for i in range(2, n+1):
-        if i not in sieve:
-            sieve[i] = True
-            primes.append(i)
+from helpers.sieve import Sieve
 
-        j = 2
-        # All subsequent multiples of i are not prime.
-        while i * j <= n:
-            sieve[i * j] = False
-            j += 1
 
-    return primes
+def solve_first(n: int):
+    s = Sieve()
+    primes = s.primes(n, False)
+    return sum(primes)
 
-def sum_primes(n):
-    n = map(int, n)
 
-    max_prime = max(n)
-
-    primes = get_primes(max_prime)
-
-    sums = []
-
-    for i in n:
-        sums.append(sum([j for j in primes if i >= j]))
-
-    return sums
+if __name__ == '__main__':
+    print(solve_first(2000000))

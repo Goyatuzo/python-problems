@@ -1,5 +1,5 @@
 
-def solve() -> int:
+def solve_first(in_a_row: int) -> int:
     s = [
         '08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08',
         '49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00',
@@ -28,8 +28,38 @@ def solve() -> int:
     max_adjacent = 0
 
     arr = [[int(num) for num in line.split()] for line in s]
+
+    print(arr)
+
+    limit = in_a_row - 1
+    for i in range(len(arr)):
+        row = arr[i]
+        for j in range(len(row)):
+            e_total = 1
+            s_total = 1
+            se_total = 1
+            sw_total = 1
+
+            for k in range(in_a_row):
+
+                # East
+                if j + limit < len(arr):
+                    e_total *= arr[i][j + k]
+                # South
+                if i + limit < len(arr):
+                    s_total *= arr[i + k][j]
+                # Southeast
+                if j + limit < len(arr) and i + limit < len(arr):
+                    se_total *= arr[i + k][j + k]
+                # Southwest
+                if j - limit >= 0 and i - limit >= 0:
+                    sw_total *= arr[i - k][j - k]
+
+            max_adjacent = max(
+                [e_total, s_total, se_total, sw_total, max_adjacent])
+
     return max_adjacent
 
 
 if __name__ == '__main__':
-    print(solve())
+    print(solve_first(4))

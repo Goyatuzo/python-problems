@@ -46,6 +46,9 @@ def create_dict(range_limits: (int, int), method: Callable[[int], int]) -> dict:
 def solve_first(n: int) -> int:
     square_dict = create_dict((32, 99), square)
     penta_dict = create_dict((26, 81), pentagonal)
+    hexa_dict = create_dict((23, 70), hexagonal)
+    hepta_dict = create_dict((20, 63), heptagonal)
+    octa_dict = create_dict((18, 58), octagonal)
 
     # Iterate through triangle to find appropriate answers
     for i in range(45, 141):

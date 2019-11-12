@@ -32,6 +32,7 @@ def solve_first(n: int) -> int:
     for i in range(45, 141):
         last_two_digits = str(triangle(i))[2:4]
 
+        square_matches = [square(j) for j in range(32, 100) if str(square(j))[0:2] == last_two_digits]
 
     return 0
 

@@ -1,4 +1,5 @@
-from typing import Callable
+from typing import Callable, List, Tuple
+
 
 def triangle(n: int) -> int:
     """Triangle 45 < n < 140"""
@@ -29,6 +30,7 @@ def octagonal(n: int) -> int:
     """Octagonal 19 < n < 58"""
     return int(n * (3 * n - 2))
 
+
 def create_dict(range_limits: (int, int), method: Callable[[int], int]) -> dict:
     res_dict = {}
 
@@ -43,6 +45,33 @@ def create_dict(range_limits: (int, int), method: Callable[[int], int]) -> dict:
 
     return res_dict
 
+
+def rec_search(num: int, rem: List[dict], depth = 1) -> int:
+    if len(rem) <= 0 and depth >= 6:
+        return 0
+    elif len(rem) <= 0:
+        return -1
+
+    last_two_digits = str(num)[2:4]
+    # We don't need to pass in the functions because they've already been calculated in the dict
+    matches = [(idx, i[last_two_digits])
+               for idx, i in enumerate(rem) if last_two_digits in i]
+
+    if len(matches) == 0:
+        return -1
+
+    for match in matches:
+        temp_rem = [i for idx, i in enumerate(rem) if idx != match[0]]
+
+        for val in match[1]:
+            rest = rec_search(val, temp_rem, depth + 1)
+
+            if rest == -1:
+                return -1
+                
+            return rest + val
+
+
 def solve_first(n: int) -> int:
     square_dict = create_dict((32, 99), square)
     penta_dict = create_dict((26, 81), pentagonal)
@@ -52,13 +81,13 @@ def solve_first(n: int) -> int:
 
     # Iterate through triangle to find appropriate answers
     for i in range(45, 141):
-        # list of all the dictionaries
-        remaining_dicts = [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict]
-
-        calc = triangle(i)
-        last_two_digits = str(calc)[2:4]
+        print("Searching for: " + str(triangle(i)))
+        res = rec_search(
+            triangle(i), [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict])
+        print(res)
 
     return 0
+
 
 if __name__ == "__main__":
     print(solve_first(6))

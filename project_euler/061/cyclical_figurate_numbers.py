@@ -47,23 +47,16 @@ def solve_first(n: int) -> int:
     square_dict = create_dict((32, 99), square)
     penta_dict = create_dict((26, 81), pentagonal)
     hexa_dict = create_dict((23, 70), hexagonal)
-    hepta_dict = create_dict((20, 63), heptagonal)
-    octa_dict = create_dict((18, 58), octagonal)
+    hepta_dict = create_dict((21, 63), heptagonal)
+    octa_dict = create_dict((19, 58), octagonal)
 
     # Iterate through triangle to find appropriate answers
     for i in range(45, 141):
-        last_two_digits = str(triangle(i))[2:4]
+        # list of all the dictionaries
+        remaining_dicts = [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict]
 
-        if last_two_digits not in square_dict:
-            continue
-
-        square_last_two = str(square_dict[last_two_digits])[2:4]
-
-        if square_last_two not in penta_dict:
-            continue
-
-
-
+        calc = triangle(i)
+        last_two_digits = str(calc)[2:4]
 
     return 0
 

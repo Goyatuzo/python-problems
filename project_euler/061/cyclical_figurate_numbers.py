@@ -21,12 +21,12 @@ def hexagonal(n: int) -> int:
 
 
 def heptagonal(n: int) -> int:
-    """Heptagonal 20 < n < 63"""
+    """Heptagonal 21 < n < 63"""
     return int(n * (5 * n - 3) / 2)
 
 
 def octagonal(n: int) -> int:
-    """Octagonal 18 < n < 58"""
+    """Octagonal 19 < n < 58"""
     return int(n * (3 * n - 2))
 
 def create_dict(range_limits: (int, int), method: Callable[[int], int]) -> dict:

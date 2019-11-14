@@ -46,11 +46,11 @@ def create_dict(range_limits: (int, int), method: Callable[[int], int]) -> dict:
     return res_dict
 
 
-def rec_search(num: int, rem: List[dict], depth = 1) -> int:
-    if len(rem) <= 0 and depth >= 6:
-        return 0
+def rec_search(num: int, rem: List[dict], depth: int) -> int:
+    if depth <= 0:
+        return [num]
     elif len(rem) <= 0:
-        return -1
+        return None
 
     last_two_digits = str(num)[2:4]
     # We don't need to pass in the functions because they've already been calculated in the dict
@@ -58,18 +58,19 @@ def rec_search(num: int, rem: List[dict], depth = 1) -> int:
                for idx, i in enumerate(rem) if last_two_digits in i]
 
     if len(matches) == 0:
-        return -1
+        return None
 
     for match in matches:
         temp_rem = [i for idx, i in enumerate(rem) if idx != match[0]]
 
         for val in match[1]:
-            rest = rec_search(val, temp_rem, depth + 1)
+            rest = rec_search(val, temp_rem, depth - 1)
 
-            if rest == -1:
-                return -1
-                
-            return rest + val
+            if rest is None:
+                continue
+
+            rest.append(num)
+            return rest
 
 
 def solve_first(n: int) -> int:
@@ -81,13 +82,19 @@ def solve_first(n: int) -> int:
 
     # Iterate through triangle to find appropriate answers
     for i in range(45, 141):
-        print("Searching for: " + str(triangle(i)))
         res = rec_search(
-            triangle(i), [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict])
-        print(res)
+            triangle(i), [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict], n - 1)
 
-    return 0
+        if res is not None:
+            res.reverse()
+            last_two = str(res[-1])[2:4]
+            first_two = str(res[0])[0:2]
+
+            if last_two == first_two:
+                print(res)
+
+    return res
 
 
 if __name__ == "__main__":
-    print(solve_first(6))
+    print(solve_first(3))

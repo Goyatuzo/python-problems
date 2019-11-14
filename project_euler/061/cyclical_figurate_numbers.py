@@ -1,4 +1,5 @@
 from typing import Callable, List, Tuple
+from copy import deepcopy
 
 
 def triangle(n: int) -> int:
@@ -46,13 +47,17 @@ def create_dict(range_limits: (int, int), method: Callable[[int], int]) -> dict:
     return res_dict
 
 
-def rec_search(num: int, rem: List[dict], depth: int) -> int:
+def rec_search(lst: List[int], rem: List[dict], depth: int) -> List[int]:
     if depth <= 0:
-        return [num]
-    elif len(rem) <= 0:
+        last_two = str(lst[-1])[2:4]
+        first_two = str(lst[0])[0:2]
+
+        if last_two == first_two:
+            return lst
+
         return None
 
-    last_two_digits = str(num)[2:4]
+    last_two_digits = str(lst[-1])[2:4]
     # We don't need to pass in the functions because they've already been calculated in the dict
     matches = [(idx, i[last_two_digits])
                for idx, i in enumerate(rem) if last_two_digits in i]
@@ -64,12 +69,14 @@ def rec_search(num: int, rem: List[dict], depth: int) -> int:
         temp_rem = [i for idx, i in enumerate(rem) if idx != match[0]]
 
         for val in match[1]:
-            rest = rec_search(val, temp_rem, depth - 1)
+            temp_val = deepcopy(lst)
+            temp_val.append(val)
+
+            rest = rec_search(temp_val, temp_rem, depth - 1)
 
             if rest is None:
                 continue
 
-            rest.append(num)
             return rest
 
 
@@ -83,18 +90,13 @@ def solve_first(n: int) -> int:
     # Iterate through triangle to find appropriate answers
     for i in range(45, 141):
         res = rec_search(
-            triangle(i), [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict], n - 1)
+            [triangle(i)], [square_dict, penta_dict, hexa_dict, hepta_dict, octa_dict], n - 1)
 
         if res is not None:
-            res.reverse()
-            last_two = str(res[-1])[2:4]
-            first_two = str(res[0])[0:2]
+            return res
 
-            if last_two == first_two:
-                print(res)
-
-    return res
+    return []
 
 
 if __name__ == "__main__":
-    print(solve_first(3))
+    print(sum(solve_first(6)))

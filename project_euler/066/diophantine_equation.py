@@ -13,9 +13,11 @@ def solve_first(max_d: int):
     for d in valid_d(max_d):
         x = 2
 
+        print(d)
+
         y_squared = ((x ** 2) - 1) / d
 
-        while not sqrt(y_squared).is_integer():
+        while not round(sqrt(y_squared), 5).is_integer():
             x += 1
             y_squared = ((x ** 2) - 1) / d
 

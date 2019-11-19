@@ -1,6 +1,8 @@
 
 from sys import getrecursionlimit
 
+def lex_sort(s: int):
+    return ''.join(sorted(sorted(str(s))))
 
 def permute_numbers(s: int):
     s = str(s)
@@ -45,6 +47,24 @@ def solve_first(n):
 
         num += 1
 
+def solve_second(n: int):
+    # Hold the dictionaries of the cubic numbers that have come before.
+    d = {}
+    num = 1
+    while True:
+        candidate = num ** 3
+
+        sorted_candidate = lex_sort(candidate)
+        
+        if sorted_candidate in d:
+            d[sorted_candidate].append(num)
+        else:
+            d[sorted_candidate] = [num]
+
+        if len(d[sorted_candidate]) == n:
+            return d[sorted_candidate][0]
+
+        num += 1
 
 if __name__ == "__main__":
-    print(solve_first(5))
+    print(solve_second(5))

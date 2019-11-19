@@ -1,6 +1,6 @@
 import unittest
 
-from cubic_permutations import solve_first, permute_numbers
+from cubic_permutations import solve_second, permute_numbers
 
 
 class TestCubicPermutations(unittest.TestCase):
@@ -9,7 +9,7 @@ class TestCubicPermutations(unittest.TestCase):
         self.assertEqual(6, len(permute_numbers(123)))
 
     def test_given(self):
-        self.assertAlmostEqual(41063625, solve_first(3))
+        self.assertAlmostEqual(345, solve_second(3))
 
 
 if __name__ == '__main__':

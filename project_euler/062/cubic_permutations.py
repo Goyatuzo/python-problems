@@ -1,6 +1,7 @@
 
 from sys import getrecursionlimit
 
+
 def permute_numbers(s: int):
     s = str(s)
     if len(s) == 0:
@@ -11,7 +12,6 @@ def permute_numbers(s: int):
     for idx, char in enumerate(s):
         temp_str = s[:idx] + s[idx + 1:]
 
-        print(temp_str)
         rest = permute_numbers(temp_str)
 
         for i in range(len(rest)):
@@ -23,11 +23,28 @@ def permute_numbers(s: int):
 
 
 def solve_first(n):
-    found = False
-    n = 0
+    num = 1
+    while True:
+        candidate = num ** 3
+        permutations = set(permute_numbers(candidate))
 
-    return 1
+        count = 0
+        for perm in permutations:
+            if perm[0] == '0':
+                continue
+
+            cubic_root = round(int(perm) ** (1 / 3), 10)
+
+            if cubic_root.is_integer():
+                print('Number: ', str(num) + ', Permutation: ' +
+                      str(perm) + ', Root: ' + str(cubic_root))
+                count += 1
+
+        if count == n:
+            return num
+
+        num += 1
 
 
 if __name__ == "__main__":
-    print(permute_numbers(123))
+    print(solve_first(5))

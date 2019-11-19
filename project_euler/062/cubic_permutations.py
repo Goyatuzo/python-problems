@@ -30,9 +30,8 @@ def permute_numbers(s: int):
 def solve_first(n):
     found = False
     n = 0
-    while not found:
-        n += 1
-        curr = n ** 3
+
+    return 1
 
 
 if __name__ == "__main__":

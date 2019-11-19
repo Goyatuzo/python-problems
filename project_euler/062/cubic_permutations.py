@@ -1,11 +1,6 @@
 
 from sys import getrecursionlimit
 
-def swap(s: str, start: int, end: int):
-    s[start], s[end] = s[end], s[start]
-    return s
-
-
 def permute_numbers(s: int):
     s = str(s)
     if len(s) == 0:

@@ -13,7 +13,6 @@ def solve_first(max_d: int):
     for d in valid_d(max_d):
         x = 2
 
-        print(d)
 
         y_squared = ((x ** 2) - 1) / d
 
@@ -24,8 +23,9 @@ def solve_first(max_d: int):
         if x > max_x:
             max_x = x
             highest_d = d
+        print((d, x))
 
-    return highest_d
+    return (max_x, highest_d)
 
 
 if __name__ == "__main__":

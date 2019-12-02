@@ -1,6 +1,7 @@
+from copy import deepcopy
 
 
-def process_opcodes(ints): 
+def process_opcodes(ints):
     for curr in range(0, len(ints), 4):
         op = ints[curr]
 
@@ -25,8 +26,25 @@ def process_opcodes(ints):
 
     return ints
 
+
 def solve_first(ints):
     return process_opcodes(ints)[0]
+
+
+def solve_second(ints):
+    deep = deepcopy(ints)
+
+    for i in range(0, 100):
+        for j in range(10):
+            ints = deepcopy(deep)
+
+            ints[1] = i
+            ints[2] = j
+
+            answer = solve_first(ints)
+
+            if answer == 19690720:
+                return (i, j)
 
 
 if __name__ == "__main__":
@@ -43,3 +61,5 @@ if __name__ == "__main__":
         values[2] = 2
 
         print('Part 1: ' + str(solve_first(values)))
+        values = [int(i) for i in line.split(',')]
+        print('Part 2: ' + str(solve_second(values)))

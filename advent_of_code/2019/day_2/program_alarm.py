@@ -3,16 +3,13 @@ def solve_first(ints):
     for curr in range(0, len(ints), 4):
         op = ints[curr]
 
+        # If opcode is 99, terminate
         if op == 99:
             break
 
         idx_one = ints[curr + 1]
         idx_two = ints[curr + 2]
         idx_three = ints[curr + 3]
-
-        # Check if any are 99
-        if idx_one == 99 or idx_two == 99 or idx_three == 99:
-            break
 
         val_one = ints[idx_one]
         val_two = ints[idx_two]
@@ -36,6 +33,9 @@ if __name__ == "__main__":
         line = f.readline()
 
         values = [int(i) for i in line.split(',')]
-        print(values)
 
-        print('Part 1: ' + ','.join([str(i) for i in solve_first(values)]))
+        # Part of problem statement
+        values[1] = 12
+        values[2] = 2
+
+        print('Part 1: ' + str(solve_first(values)[0]))

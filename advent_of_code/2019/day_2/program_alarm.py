@@ -1,5 +1,6 @@
 
-def solve_first(ints):
+
+def process_opcodes(ints): 
     for curr in range(0, len(ints), 4):
         op = ints[curr]
 
@@ -24,6 +25,9 @@ def solve_first(ints):
 
     return ints
 
+def solve_first(ints):
+    return process_opcodes(ints)[0]
+
 
 if __name__ == "__main__":
     part_one_fuel = 0
@@ -38,4 +42,4 @@ if __name__ == "__main__":
         values[1] = 12
         values[2] = 2
 
-        print('Part 1: ' + str(solve_first(values)[0]))
+        print('Part 1: ' + str(solve_first(values)))

@@ -38,7 +38,7 @@ def create_coords(cmds):
     for cmd in cmds:
         coords.update(create_line(step_count, curr, cmd))
         curr = get_new_coords(curr, cmd)
-        step_count = int(cmd[1:])
+        step_count += int(cmd[1:])
 
     return coords
 
@@ -77,20 +77,18 @@ def solve_second(first_wire, second_wire):
     # Wire 1
     coords_one = create_coords(commands)
 
-    first_steps = 0
     second_steps = 0
 
     curr = (0, 0)
     for cmd in second_wire.split(','):
         # Reset the steps count
-        first_steps = 0
-        to_next = create_line(first_steps, curr, cmd)
+        to_next = create_line(second_steps, curr, cmd)
 
         for point in to_next:
             second_steps += 1
 
             if point in coords_one:
-                overlap.append(point)
+                overlap.append((coords_one[point], second_steps))
 
         curr = get_new_coords(curr, cmd)
 
@@ -109,4 +107,5 @@ if __name__ == "__main__":
     with open('input.txt', 'r') as f:
         [first_wire, second_wire] = f.readlines()
 
-    print(solve_first(first_wire, second_wire))
+    print("Part 1: " + str(solve_first(first_wire, second_wire)))
+    print("Part 2: " + str(solve_second(first_wire, second_wire)))

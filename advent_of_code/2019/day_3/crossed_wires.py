@@ -1,25 +1,19 @@
-def create_line(curr, cmd):
+def create_line(step_count, curr, cmd):
     coords = {}
     direction = cmd[0]
     amount = int(cmd[1:])
 
-    if direction == 'U':
-        for i in range(amount):
+    for i in range(amount):
+        step_count += 1
+        if direction == 'U':
             curr = (curr[0], curr[1] + 1)
-            coords[curr] = True
-
-    elif direction == 'R':
-        for i in range(amount):
+        elif direction == 'R':
             curr = (curr[0] + 1, curr[1])
-            coords[curr] = True
-    elif direction == 'D':
-        for i in range(amount):
+        elif direction == 'D':
             curr = (curr[0], curr[1] - 1)
-            coords[curr] = True
-    elif direction == 'L':
-        for i in range(amount):
+        elif direction == 'L':
             curr = (curr[0] - 1, curr[1])
-            coords[curr] = True
+        coords[curr] = step_count
 
     return coords
 
@@ -40,9 +34,11 @@ def get_new_coords(curr, cmd):
 def create_coords(cmds):
     coords = {}
     curr = (0, 0)
+    step_count = 0
     for cmd in cmds:
-        coords.update(create_line(curr, cmd))
+        coords.update(create_line(step_count, curr, cmd))
         curr = get_new_coords(curr, cmd)
+        step_count = int(cmd[1:])
 
     return coords
 
@@ -57,9 +53,42 @@ def solve_first(first_wire, second_wire):
 
     curr = (0, 0)
     for cmd in second_wire.split(','):
-        to_next = create_line(curr, cmd)
+        to_next = create_line(0, curr, cmd)
 
         for point in to_next:
+            if point in coords_one:
+                overlap.append(point)
+
+        curr = get_new_coords(curr, cmd)
+
+    # Find the tuple with the smallest manhattan distance
+    min_distance = min(overlap, key=lambda coord: abs(
+        coord[0]) + abs(coord[1]))
+
+    # Add x and y
+    return abs(min_distance[0]) + abs(min_distance[1])
+
+
+def solve_second(first_wire, second_wire):
+    commands = first_wire.split(',')
+
+    overlap = []
+
+    # Wire 1
+    coords_one = create_coords(commands)
+
+    first_steps = 0
+    second_steps = 0
+
+    curr = (0, 0)
+    for cmd in second_wire.split(','):
+        # Reset the steps count
+        first_steps = 0
+        to_next = create_line(first_steps, curr, cmd)
+
+        for point in to_next:
+            second_steps += 1
+
             if point in coords_one:
                 overlap.append(point)
 

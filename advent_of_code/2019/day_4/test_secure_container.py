@@ -16,7 +16,7 @@ class TestSecureContainer(unittest.TestCase):
 
     def test_part_two_given(self):
         self.assertTrue(meets_criteria_two(278899))
-        self.assertTrue(meets_criteria_two(777777))
+        self.assertFalse(meets_criteria_two(777777))
         self.assertTrue(meets_criteria_two(778899))
         self.assertTrue(meets_criteria_two(778889))
         self.assertFalse(meets_criteria_two(768889))

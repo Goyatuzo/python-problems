@@ -48,13 +48,9 @@ def meets_criteria_two(num):
 
         previous_digit = digit
 
-    result = (adjacent_count == -1 or adjacent_count == 1) \
+    result = (adjacent_count == -1 or adjacent_count % 2 != 0) \
         and adjacent_digits \
         and is_increasing
-
-    if result:
-        print("NUM: " + num + ", ADJ: " + str(adjacent_count) + ", ADJ DIGITS: " +
-              str(adjacent_digits) + ", INCREASING: " + str(is_increasing))
 
     return result
 

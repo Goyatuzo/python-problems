@@ -32,13 +32,14 @@ def meets_criteria_two(num):
     previous_digit = num[0]
 
     for digit in num[1:]:
-        if digit == previous_digit:
+
+        if adjacent_count == -1:
+            pass
+        elif digit == previous_digit:
             adjacent_count += 1
             adjacent_digits = True
         else:
-            if adjacent_count == -1:
-                pass
-            elif adjacent_count == 1:
+            if adjacent_count == 1:
                 adjacent_count = -1
             else:
                 adjacent_count = 0
@@ -51,6 +52,9 @@ def meets_criteria_two(num):
     result = (adjacent_count == -1 or adjacent_count % 2 != 0) \
         and adjacent_digits \
         and is_increasing
+
+    # if result:
+    #     print("NUM: " + str(num))
 
     return result
 

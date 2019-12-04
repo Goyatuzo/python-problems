@@ -36,20 +36,20 @@ def meets_criteria_two(num):
             adjacent_count += 1
             adjacent_digits = True
         else:
-            if adjacent_count == 0:
+            if adjacent_count == -1:
                 pass
-            elif adjacent_count % 2 != 0:
-                adjacent_count = 0
-            elif adjacent_count < 2:
+            elif adjacent_count == 1:
                 adjacent_count = -1
-                break
+            else:
+                adjacent_count = 0
 
         if int(previous_digit) > int(digit):
             is_increasing = False
 
         previous_digit = digit
 
-    result = adjacent_count != -1 and adjacent_count % 2 != 0 and adjacent_digits and is_increasing
+    result = adjacent_count == - \
+        1 and adjacent_count % 2 != 0 and adjacent_digits and is_increasing
 
     if result:
         print("NUM: " + num + ", ADJ: " + str(adjacent_count))

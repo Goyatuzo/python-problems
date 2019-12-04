@@ -15,11 +15,12 @@ class TestSecureContainer(unittest.TestCase):
         self.assertTrue(set(second).issubset(set(first)))
 
     def test_part_two_given(self):
-        self.assertEqual(True, meets_criteria_two(278899))
-        self.assertEqual(True, meets_criteria_two(777777))
-        self.assertEqual(True, meets_criteria_two(778899))
-        self.assertEqual(True, meets_criteria_two(778889))
-        self.assertEqual(False, meets_criteria_two(768889))
+        self.assertTrue(meets_criteria_two(278899))
+        self.assertTrue(meets_criteria_two(777777))
+        self.assertTrue(meets_criteria_two(778899))
+        self.assertTrue(meets_criteria_two(778889))
+        self.assertFalse(meets_criteria_two(768889))
+        self.assertFalse(meets_criteria_two(279999))
 
 
 if __name__ == '__main__':

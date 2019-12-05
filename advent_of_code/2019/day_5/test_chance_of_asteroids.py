@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 from chance_of_asteroids import process_opcodes, process_immediate_mode
 
@@ -6,6 +7,7 @@ from chance_of_asteroids import process_opcodes, process_immediate_mode
 class TestChanceOfAsteroids(unittest.TestCase):
     def test_immediate_mode_processing(self):
         self.assertEqual((2, True, False, True), process_immediate_mode(1002))
+        self.assertEqual((0, False, False, True), process_immediate_mode(1100))
 
     def test_from_program_alarm(self):
         self.assertEqual([2, 0, 0, 0, 99], process_opcodes([1, 0, 0, 0, 99]))
@@ -17,6 +19,37 @@ class TestChanceOfAsteroids(unittest.TestCase):
 
         self.assertEqual([3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50], process_opcodes(
             [1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50]))
+
+    def test_given_examples(self):
+        self.assertEqual([1002, 4, 3, 4, 99],
+                         process_opcodes([1002, 4, 3, 4, 33]))
+        self.assertEqual([1101, 100, -1, 4, 99],
+                         process_opcodes([1101, 100, -1, 4, 0]))
+
+    def test_input(self):
+        with patch('builtins.input', side_effect="1"):
+            self.assertEqual([
+                3, 12,
+                1, 12, 6, 6,
+                1101, 1, 238, 12,
+                104, 0,
+                239, 23
+            ], process_opcodes([
+                3, 12,
+                1, 12, 6, 6,
+                1100, 1, 238, 12,
+                104, 0,
+                0, 23]))
+
+        # self.assertEqual([], process_opcodes([
+        #     3, 225,               # 1
+        #     1, 225, 6, 6,         # 5
+        #     1100, 1, 238, 225,    # 9
+        #     104, 0,               # 11
+        #     1001, 210, 88, 224,   # 15
+        #     101, -143, 224, 224,  # 19
+        #     4, 224,               # 21
+        #     22, 23]))             # 23
 
 
 if __name__ == '__main__':

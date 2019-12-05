@@ -77,9 +77,6 @@ def process_opcodes(ints):
 
 
 if __name__ == "__main__":
-    part_one_fuel = 0
-    part_two_fuel = 0
-
     with open('input.txt', 'r') as f:
         line = f.readline()
 

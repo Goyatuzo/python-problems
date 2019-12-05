@@ -7,14 +7,16 @@ def process_immediate_mode(instruction):
         return (instruction, True, True, True)
 
     str_op = str_op.zfill(5)
+
+    print(str_op[2:3] == 0)
     # Obtain the OP code
     op = int(str_op[3:5])
     # If the first parameter is set to 0, it's in position mode
-    one_position = str_op[2:3] == 0
+    one_position = int(str_op[2:3]) == 0
     # If the second parameter is set to 0, it's in position mode
-    two_position = str_op[1:2] == 0
+    two_position = int(str_op[1:2]) == 0
     # If the third parameter is set to 0, it's in position mode
-    three_position = str_op[0:2] == 0
+    three_position = int(str_op[0:1]) == 0
 
     return (op, one_position, two_position, three_position)
 

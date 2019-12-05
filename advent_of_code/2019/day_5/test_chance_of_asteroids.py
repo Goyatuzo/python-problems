@@ -1,9 +1,12 @@
 import unittest
 
-from chance_of_asteroids import process_opcodes
+from chance_of_asteroids import process_opcodes, process_immediate_mode
 
 
 class TestChanceOfAsteroids(unittest.TestCase):
+    def test_immediate_mode_processing(self):
+        self.assertEqual((2, True, False, True), process_immediate_mode(1002))
+
     def test_from_program_alarm(self):
         self.assertEqual([2, 0, 0, 0, 99], process_opcodes([1, 0, 0, 0, 99]))
         self.assertEqual([2, 3, 0, 6, 99], process_opcodes([2, 3, 0, 3, 99]))

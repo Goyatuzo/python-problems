@@ -40,13 +40,13 @@ def process_opcodes(ints):
             if two_position:
                 val_two = ints[idx_two]
             else:
-                val_two = ints[curr + 2]
+                val_two = idx_two
 
         # Obtain the first value
         if one_position:
             val_one = ints[idx_one]
         else:
-            val_one = ints[curr + 1]
+            val_one = idx_one
 
         # The value to increment curr
         increment = 4
@@ -62,7 +62,11 @@ def process_opcodes(ints):
             idx_three = idx_one
             increment = 2
         elif op == 4:
-            print(ints[idx_one])
+            if three_position:
+                print(ints[idx_one])
+            else:
+                # In immediate mode, just print out the value
+                print(idx_one)
             increment = 2
 
         # Update destination with new value iff output is set to position

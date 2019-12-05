@@ -30,7 +30,9 @@ def process_opcodes(ints):
 
         idx_one = ints[curr + 1]
 
-        if op < 3:
+        print(op)
+
+        if op < 3 or op > 4:
             idx_two = ints[curr + 2]
             idx_three = ints[curr + 3]
 
@@ -66,10 +68,20 @@ def process_opcodes(ints):
                 # In immediate mode, just print out the value
                 print(idx_one)
             increment = 2
+        elif op == 5 and val_one != 0:
+            curr = val_two
+            continue
+        elif op == 6 and val_one == 0:
+            curr = val_two
+            continue
+        elif op == 7:
+            updated = val_one < val_two
+        elif op == 8:
+            updated = val_one == val_two
 
         # Update destination with new value iff output is set to position
         if three_position:
-            ints[idx_three] = updated
+            ints[idx_three] = int(updated)
 
         curr += increment
 

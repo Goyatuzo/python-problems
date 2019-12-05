@@ -26,20 +26,52 @@ class TestChanceOfAsteroids(unittest.TestCase):
         self.assertEqual([1101, 100, -1, 4, 99],
                          process_opcodes([1101, 100, -1, 4, 0]))
 
+    def test_position_equality(self):
+        with patch('builtins.input', side_effect="8"):
+            self.assertEqual([3, 9, 8, 9, 10, 9, 4, 9, 99, 1, 8],
+                             process_opcodes([3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8]))
+        with patch('builtins.input', side_effect="7"):
+            self.assertEqual([3, 9, 8, 9, 10, 9, 4, 9, 99, 0, 8],
+                             process_opcodes([3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8]))
+
+    def test_position_less_than(self):
+        with patch('builtins.input', side_effect="8"):
+            self.assertEqual([3, 9, 7, 9, 10, 9, 4, 9, 99, 0, 8],
+                             process_opcodes([3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8]))
+        with patch('builtins.input', side_effect="7"):
+            self.assertEqual([3, 9, 7, 9, 10, 9, 4, 9, 99, 1, 8],
+                             process_opcodes([3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8]))
+
+    def test_immediate_equal(self):
+        with patch('builtins.input', side_effect="8"):
+            self.assertEqual([3, 3, 1108, 1, 8, 3, 4, 3, 99],
+                             process_opcodes([3, 3, 1108, -1, 8, 3, 4, 3, 99]))
+        with patch('builtins.input', side_effect="7"):
+            self.assertEqual([3, 3, 1108, 0, 8, 3, 4, 3, 99],
+                             process_opcodes([3, 3, 1108, -1, 8, 3, 4, 3, 99]))
+
+    def test_immediate_less_than(self):
+        with patch('builtins.input', side_effect="8"):
+            self.assertEqual([3, 3, 1107, 0, 8, 3, 4, 3, 99],
+                             process_opcodes([3, 3, 1107, -1, 8, 3, 4, 3, 99]))
+        with patch('builtins.input', side_effect="7"):
+            self.assertEqual([3, 3, 1107, 1, 8, 3, 4, 3, 99],
+                             process_opcodes([3, 3, 1107, -1, 8, 3, 4, 3, 99]))
+
     def test_input(self):
         with patch('builtins.input', side_effect="1"):
             self.assertEqual([
-                3, 12,
-                1, 12, 6, 6,
-                1101, 1, 238, 12,
+                3, 13,
+                1, 13, 6, 6,
+                1101, 1, 238, 13,
                 104, 0,
-                239, 23
+                99, 239, 23
             ], process_opcodes([
-                3, 12,
-                1, 12, 6, 6,
-                1100, 1, 238, 12,
+                3, 13,
+                1, 13, 6, 6,
+                1100, 1, 238, 13,
                 104, 0,
-                0, 23]))
+                99, 0, 23]))
 
         # self.assertEqual([], process_opcodes([
         #     3, 225,               # 1

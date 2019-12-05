@@ -7,8 +7,6 @@ def process_immediate_mode(instruction):
         return (instruction, True, True, True)
 
     str_op = str_op.zfill(5)
-
-    print(str_op[2:3] == 0)
     # Obtain the OP code
     op = int(str_op[3:5])
     # If the first parameter is set to 0, it's in position mode
@@ -79,4 +77,14 @@ def process_opcodes(ints):
 
 
 if __name__ == "__main__":
-    print(process_opcodes([3, 0, 4, 0, 99]))
+    part_one_fuel = 0
+    part_two_fuel = 0
+
+    with open('input.txt', 'r') as f:
+        line = f.readline()
+
+        values = [int(i) for i in line.split(',')]
+
+        print('Part 1:')
+        process_opcodes(values)
+        print('END PART 1')

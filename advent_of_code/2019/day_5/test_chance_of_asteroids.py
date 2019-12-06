@@ -58,6 +58,11 @@ class TestChanceOfAsteroids(unittest.TestCase):
             self.assertEqual([3, 3, 1107, 1, 8, 3, 4, 3, 99],
                              process_opcodes([3, 3, 1107, -1, 8, 3, 4, 3, 99]))
 
+    def test_position_jump(self):
+        with patch('builtins.input', side_effect="0"):
+            self.assertEqual([3, 12, 6, 12, 15, 1, 13, 14, 13, 4, 13, 99, 0, 0, 1, 9],
+                             process_opcodes([3, 12, 6, 12, 15, 1, 13, 14, 13, 4, 13, 99, -1, 0, 1, 9]))
+
     def test_input(self):
         with patch('builtins.input', side_effect="1"):
             self.assertEqual([

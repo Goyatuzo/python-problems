@@ -25,10 +25,28 @@ class Node:
             return None
 
 
-# class Orbit:
-#     def __init__(self, parent, child):
-#         self.add_orbit(parent, child)
+class Orbit:
+    def __init__(self, parent, child):
+        self.orbits = {}
+        self.add_orbit(parent, child)
 
-#     def add_orbit(self, parent, child):
-#         if self.root is None:
-#             self.roots = [Node(parent, child)]
+    def add_orbit(self, parent, child):
+        # Find the corrent parent / child
+        if parent in self.orbits:
+            parent = self.orbits[parent]
+        else:
+            parent = Node(parent)
+
+        if child in self.orbits:
+            child = self.orbits[child]
+        else:
+            child = Node(child)
+
+        parent.add_child(child)
+
+        self.orbits[parent.data] = parent
+        self.orbits[child.data] = child
+
+
+if __name__ == "__main__":
+    orbit = Orbit("test", "child")

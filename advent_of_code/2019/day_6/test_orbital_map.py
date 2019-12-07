@@ -30,8 +30,15 @@ class TestOrbitalMap(unittest.TestCase):
         orbit = Orbit("parent", "child")
         orbit.add_orbit("child", "grandchild")
 
+        self.assertEqual(["parent", "child", "grandchild"], [
+                         value.data for value in orbit.orbits.values()])
 
-        self.assertEqual(["parent", "child", "grandchild"], [value.data for value in orbit.orbits.values()])
+    def test_orbit_set_root(self):
+        orbit = Orbit("parent", "child")
+        orbit.add_orbit("child", "grandchild")
+        orbit.set_root()
+
+        self.assertEqual("parent", orbit.root.data)
 
 if __name__ == '__main__':
     unittest.main()

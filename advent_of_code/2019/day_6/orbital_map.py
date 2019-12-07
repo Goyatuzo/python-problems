@@ -47,6 +47,20 @@ class Orbit:
         self.orbits[parent.data] = parent
         self.orbits[child.data] = child
 
+    def set_root(self):
+        all_nodes = set(self.orbits.keys())
+        all_children = set([children.data for node in self.orbits.values()
+                                  for children in node.children])
+
+        root_node = self.orbits[all_nodes.difference(all_children).pop()]
+
+        self.root = root_node
+
 
 if __name__ == "__main__":
-    orbit = Orbit("test", "child")
+    orbit = Orbit("parent", "child")
+    orbit.add_orbit("child", "grandchild")
+
+    orbit.set_root()
+
+    print(orbit.root.data)

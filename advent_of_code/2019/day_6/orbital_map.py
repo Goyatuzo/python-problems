@@ -48,8 +48,12 @@ class Node:
 
         if len(not_null) == 2:
             not_null = [l - depth for l in not_null]
+            # Subtract 2 to account for the orbits it does not need to traverse
+            s = sum(not_null) - 2
+        else:
+            s = sum(not_null)
 
-        return sum(not_null)
+        return None if s == 0 else s
 
 
 class Orbit:

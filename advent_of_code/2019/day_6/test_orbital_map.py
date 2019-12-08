@@ -85,5 +85,24 @@ class TestOrbitalMap(unittest.TestCase):
         self.assertEqual(4, orbit.root.find_distance("YOU", "SAN"))
 
 
+    def test_part_two(self):
+        orbit = Orbit("COM", "B")
+        orbit.add_orbit("B", "C")
+        orbit.add_orbit("C", "D")
+        orbit.add_orbit("D", "E")
+        orbit.add_orbit("E", "F")
+        orbit.add_orbit("B", "G")
+        orbit.add_orbit("G", "H")
+        orbit.add_orbit("D", "I")
+        orbit.add_orbit("E", "J")
+        orbit.add_orbit("J", "K")
+        orbit.add_orbit("K", "L")
+        orbit.add_orbit("J", "YOU")
+        orbit.add_orbit("I", "SAN")
+
+        orbit.set_root()
+        self.assertEqual("COM", orbit.root.data)
+        self.assertEqual(3, orbit.root.find_distance("YOU", "SAN"))
+
 if __name__ == '__main__':
     unittest.main()

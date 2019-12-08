@@ -24,12 +24,13 @@ class Node:
         else:
             return None
 
-    def count_orbits(self, depth = 1):
+    def count_orbits(self, depth=1):
         """Basically counts sum of depth of all children nodes from this node."""
         if self.children == None or len(self.children) == 0:
             return 0
 
-        children_counts = [child.count_orbits(depth + 1) + depth for child in self.children]
+        children_counts = [child.count_orbits(
+            depth + 1) + depth for child in self.children]
 
         return sum(children_counts)
 
@@ -82,13 +83,12 @@ if __name__ == "__main__":
         orbit = Orbit()
 
         while line:
-            parent, child = line.split(")")
-
+            parent, child = line.strip().split(")")
             orbit.add_orbit(parent, child)
 
             line = f.readline()
 
-        print("Process orbits")
         orbit.set_root()
-        print("Root set")
-        print(orbit.root.data)
+
+        print("ROOT: ", orbit.root.data)
+        print("ORBITS: ", orbit.root.count_orbits())

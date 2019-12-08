@@ -34,6 +34,26 @@ class Node:
 
         return sum(children_counts)
 
+    def find_distance(self, first, second, depth=0):
+        if self.data == first or self.data == second:
+            return depth
+
+        if self.children == None or len(self.children) == 0:
+            return None
+
+        rest = [child.find_distance(first, second, depth + 1)
+                for child in self.children]
+
+        print("NODE: ", self.data, ", DEPTH: ", depth)
+        print("DEPTH: ", rest)
+
+        not_null = [l for l in rest if l is not None]
+
+        if len(not_null) == 2:
+            not_null = [l - depth for l in not_null]
+
+        return sum(not_null)
+
 
 class Orbit:
     def __init__(self, parent="", child=""):

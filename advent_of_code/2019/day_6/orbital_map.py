@@ -44,9 +44,6 @@ class Node:
         rest = [child.find_distance(first, second, depth + 1)
                 for child in self.children]
 
-        print("NODE: ", self.data, ", DEPTH: ", depth)
-        print("DEPTH: ", rest)
-
         not_null = [l for l in rest if l is not None]
 
         if len(not_null) == 2:
@@ -112,3 +109,4 @@ if __name__ == "__main__":
 
         print("ROOT: ", orbit.root.data)
         print("ORBITS: ", orbit.root.count_orbits())
+        print("DISTANCE: ", orbit.root.find_distance("YOU", "SAN"))

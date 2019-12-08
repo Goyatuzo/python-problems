@@ -24,11 +24,23 @@ class Node:
         else:
             return None
 
+    def count_orbits(self, depth = 1):
+        """Basically counts sum of depth of all children nodes from this node."""
+        if self.children == None or len(self.children) == 0:
+            return 0
+
+        children_counts = [child.count_orbits(depth + 1) + depth for child in self.children]
+
+        return sum(children_counts)
+
 
 class Orbit:
-    def __init__(self, parent, child):
+    def __init__(self, parent="", child=""):
         self.orbits = {}
-        self.add_orbit(parent, child)
+        self.root: Node = None
+
+        if parent != "" and child != "":
+            self.add_orbit(parent, child)
 
     def add_orbit(self, parent, child):
         # Find the corrent parent / child
@@ -50,17 +62,33 @@ class Orbit:
     def set_root(self):
         all_nodes = set(self.orbits.keys())
         all_children = set([children.data for node in self.orbits.values()
-                                  for children in node.children])
+                            for children in node.children])
 
-        root_node = self.orbits[all_nodes.difference(all_children).pop()]
+        difference = all_nodes.difference(all_children)
+        root_node = self.orbits[difference.pop()]
 
         self.root = root_node
 
+    def get_orbit_count(self):
+        self.set_root()
+
+        return self.root.count_orbits()
+
 
 if __name__ == "__main__":
-    orbit = Orbit("parent", "child")
-    orbit.add_orbit("child", "grandchild")
+    with open('input.txt', 'r') as f:
 
-    orbit.set_root()
+        line = f.readline()
+        orbit = Orbit()
 
-    print(orbit.root.data)
+        while line:
+            parent, child = line.split(")")
+
+            orbit.add_orbit(parent, child)
+
+            line = f.readline()
+
+        print("Process orbits")
+        orbit.set_root()
+        print("Root set")
+        print(orbit.root.data)

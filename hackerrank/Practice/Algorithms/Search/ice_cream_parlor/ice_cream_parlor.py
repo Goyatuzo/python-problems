@@ -34,7 +34,8 @@ def icecreamParlor(m: int, arr: List[int]) -> List[int]:
         elif i == second and idx_j == -1:
             idx_j = idx
 
-    return [idx_i + 1, idx_j + 1]
+    return [idx_i + 1, idx_j + 1] if idx_i < idx_j else [idx_j + 1, idx_i + 1]
+
 
 
 

@@ -31,9 +31,8 @@ def icecreamParlor(m: int, arr: List[int]) -> List[int]:
     for (idx, i) in enumerate(arr):
         if i == first and idx_i == -1:
             idx_i = idx
-        elif i == second:
+        elif i == second and idx_j == -1:
             idx_j = idx
-            break
 
     return [idx_i + 1, idx_j + 1]
 

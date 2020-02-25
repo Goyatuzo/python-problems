@@ -6,23 +6,29 @@ import random
 import re
 import sys
 
+from operator import itemgetter
 from typing import List
 
 # Complete the gridlandMetro function below.
 def gridlandMetro(n: int, m: int, k: int, track: List[List[int]]) -> int:
-    grid = [[0 for i in range(n)] for j in range(m)]
+    track.sort(key=itemgetter(0, 1, 2))
 
+    unoccupied_grid = n * m
+
+    prev_row, prev_start, prev_end = [-1, -1, -1]
+    start_idx, end_idx = 0, 0
     for entry in track:
-        row = entry[0] - 1
-        start = entry[1] - 1
-        end = entry[2] - 1
+        row, start, end = entry
+        print(unoccupied_grid)
 
+        if prev_row != row:
+            start_idx = start
+            end_idx = end
+            unoccupied_grid = unoccupied_grid - (end - start + 1)
 
-        for i in range(start, end + 1):
-            grid[row][i] = 1
+        prev_row, prev_start, prev_end = entry
 
-
-    return [val for entry in grid for val in entry].count(0)
+    return unoccupied_grid
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

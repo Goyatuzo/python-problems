@@ -10,5 +10,8 @@ class TestGridlandMetro(unittest.TestCase):
     def test_given(self):
         self.assertEqual(9, gridlandMetro(4, 4, 3, [[2, 2, 3], [3, 1, 4], [4, 4, 4]]))
 
+    def test_overlap(self):
+        self.assertEqual(9, gridlandMetro(4, 4, 4, [[2, 2, 3], [3, 2, 4], [3, 1, 3], [4, 4, 4]]))    
+
 if __name__ == '__main__':
     unittest.main()

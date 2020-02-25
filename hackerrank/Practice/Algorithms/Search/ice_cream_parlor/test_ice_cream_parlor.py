@@ -4,6 +4,8 @@ from ice_cream_parlor import icecreamParlor
 
 
 class TestIceCreamParlor(unittest.TestCase):
+    def test_in_problem(self):
+        self.assertEqual([1, 4], icecreamParlor(6, [1, 3, 4, 5, 6]))
     def test_given(self):
         self.assertEqual([1, 4], icecreamParlor(4, [1, 4, 5, 3, 2]))
         self.assertEqual([1, 2], icecreamParlor(4, [2, 2, 4, 3]))

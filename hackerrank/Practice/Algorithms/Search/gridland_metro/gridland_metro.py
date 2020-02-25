@@ -16,15 +16,16 @@ def gridlandMetro(n: int, m: int, k: int, track: List[List[int]]) -> int:
     unoccupied_grid = n * m
 
     prev_row, prev_start, prev_end = [-1, -1, -1]
-    start_idx, end_idx = 0, 0
     for entry in track:
         row, start, end = entry
+
         print(unoccupied_grid)
 
-        if prev_row != row:
-            start_idx = start
-            end_idx = end
+        if prev_row != row or start > prev_end:
             unoccupied_grid = unoccupied_grid - (end - start + 1)
+        elif start <= prev_end and end > prev_end:
+            unoccupied_grid = unoccupied_grid - (end - prev_end)
+
 
         prev_row, prev_start, prev_end = entry
 

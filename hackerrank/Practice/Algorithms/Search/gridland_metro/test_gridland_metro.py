@@ -1,0 +1,11 @@
+import unittest
+
+from gridland_metro import gridlandMetro
+
+
+class TestGridlandMetro(unittest.TestCase):
+    def test_given(self):
+        self.assertEqual(9, gridlandMetro(4, 4, 3, [[2, 2, 3], [3, 1, 4], [4, 4, 4]]))
+
+if __name__ == '__main__':
+    unittest.main()

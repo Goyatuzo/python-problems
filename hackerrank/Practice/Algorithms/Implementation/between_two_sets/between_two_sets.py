@@ -19,6 +19,7 @@ from itertools import zip_longest
 
 def getTotalX(a: List[int], b: List[int]):
     candidates = [int(b_i / a_i) for b_i in b for a_i in a]
+    candidates = candidates + a + b
 
     print(candidates)
     valid = validate_answers(candidates, a, b)

@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
     brr = list(map(int, input().rstrip().split()))
 
-    total = getTotalX(arr, brr)
+    total = len(getTotalX(arr, brr))
 
     fptr.write(str(total) + '\n')
 

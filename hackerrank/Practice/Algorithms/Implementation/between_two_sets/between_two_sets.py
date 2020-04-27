@@ -20,13 +20,15 @@ def getTotalX(a: List[int], b: List[int]):
     pass
 
 def validate_answers(candidates: List[int], a: List[int], b: List[int]):
+    answers = []
+
     for i in candidate:
         for a_i, b_i in zip_longest(a, b):
             if a_i is not None and candidate % a_i != 0:
-                return False
+                answers.append(a_i)
             if b_i is not None and b_i & candidate != 0:
-                return False
-    return True
+                answers.append(b_i)
+    return answers
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

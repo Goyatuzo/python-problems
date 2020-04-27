@@ -19,19 +19,29 @@ from itertools import zip_longest
 
 def getTotalX(a: List[int], b: List[int]):
     candidates = [int(b_i / a_i) for b_i in b for a_i in a]
+
+    print(candidates)
     valid = validate_answers(candidates, a, b)
 
-    return len(valid)
+    print(valid)
+    return valid
 
 def validate_answers(candidates: List[int], a: List[int], b: List[int]):
     answers = []
 
     for candidate in candidates:
+        invalid = False
         for a_i, b_i in zip_longest(a, b):
             if a_i is not None and candidate % a_i != 0:
-                answers.append(a_i)
-            if b_i is not None and b_i & candidate != 0:
-                answers.append(b_i)
+                invalid = True
+                break
+            if b_i is not None and b_i % candidate != 0:
+                invalid = True
+                break
+
+        if not invalid:
+            answers.append(candidate)
+
     return set(answers)
 
 if __name__ == '__main__':

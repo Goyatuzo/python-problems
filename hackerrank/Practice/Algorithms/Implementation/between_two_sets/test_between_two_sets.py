@@ -12,5 +12,12 @@ class TestBetweenTwoPoints(unittest.TestCase):
     def test_submission(self):
         self.assertEqual(set([12, 24]), getTotalX([3, 4], [24, 48]))
 
+    def test_primes(self):
+        self.assertEqual(set([]), getTotalX([1, 3], [5, 7, 11]))
+
+    def test_case_1(self):
+        self.assertEqual(0, len(getTotalX([100, 99, 98, 97, 96, 95, 94, 93, 92,
+            91], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])))
+
 if __name__ == '__main__':
     unittest.main()

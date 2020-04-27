@@ -5,6 +5,7 @@ import os
 import random
 import re
 import sys
+from typing import List
 
 #
 # Complete the 'getTotalX' function below.
@@ -15,9 +16,17 @@ import sys
 #  2. INTEGER_ARRAY b
 #
 
-def getTotalX(a, b):
-    # Write your code here
+def getTotalX(a: List[int], b: List[int]):
     pass
+
+def validate_answers(candidates: List[int], a: List[int], b: List[int]):
+    for i in candidate:
+        for a_i, b_i in zip_longest(a, b):
+            if a_i is not None and candidate % a_i != 0:
+                return False
+            if b_i is not None and b_i & candidate != 0:
+                return False
+    return True
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

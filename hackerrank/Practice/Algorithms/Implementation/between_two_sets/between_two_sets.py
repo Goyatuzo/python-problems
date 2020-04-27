@@ -6,6 +6,7 @@ import random
 import re
 import sys
 from typing import List
+from itertools import zip_longest
 
 #
 # Complete the 'getTotalX' function below.
@@ -17,18 +18,21 @@ from typing import List
 #
 
 def getTotalX(a: List[int], b: List[int]):
-    pass
+    candidates = [int(b_i / a_i) for b_i in b for a_i in a]
+    valid = validate_answers(candidates, a, b)
+
+    return len(valid)
 
 def validate_answers(candidates: List[int], a: List[int], b: List[int]):
     answers = []
 
-    for i in candidate:
+    for candidate in candidates:
         for a_i, b_i in zip_longest(a, b):
             if a_i is not None and candidate % a_i != 0:
                 answers.append(a_i)
             if b_i is not None and b_i & candidate != 0:
                 answers.append(b_i)
-    return answers
+    return set(answers)
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

@@ -19,9 +19,7 @@ from math import sqrt
 #
 
 def getTotalX(a: List[int], b: List[int]):
-    # candidates = [int(b_i / a_i) for b_i in b for a_i in a if int(b_i / a_i) != 0]
-
-    candidates = range(min(a), int(max(b)))
+    candidates = range(min(a), int(max(b)) + 1)
 
     valid = validate_answers(candidates, a, b)
 

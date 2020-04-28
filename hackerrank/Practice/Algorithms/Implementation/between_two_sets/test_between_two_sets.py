@@ -4,7 +4,7 @@ from between_two_sets import getTotalX
 
 class TestBetweenTwoPoints(unittest.TestCase):
     def test_self(self):
-        self.assertEqual(set([6, 12, 18]), getTotalX([6], [36]))
+        self.assertEqual(set([6, 12, 18, 36]), getTotalX([6], [36]))
 
     def test_given(self):
         self.assertEqual(set([4, 8, 16]), getTotalX([2, 4], [16, 32, 96]))
@@ -24,6 +24,9 @@ class TestBetweenTwoPoints(unittest.TestCase):
 
     def test_case_3(self):
         self.assertEqual(2, len(getTotalX([3, 9, 6], [36, 72])))
+
+    def test_case_4(self):
+        self.assertEqual(9, len(getTotalX([1], [100])))
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,12 +3,15 @@ import unittest
 from between_two_sets import getTotalX
 
 class TestBetweenTwoPoints(unittest.TestCase):
+    def test_self(self):
+        self.assertEqual(set([6, 12, 18]), getTotalX([6], [36]))
+
     def test_given(self):
         self.assertEqual(set([4, 8, 16]), getTotalX([2, 4], [16, 32, 96]))
 
     def test_problem_statement(self):
         self.assertEqual(set([6, 12]), getTotalX([2, 6], [24, 36]))
-
+        
     def test_submission(self):
         self.assertEqual(set([12, 24]), getTotalX([3, 4], [24, 48]))
 
@@ -18,6 +21,9 @@ class TestBetweenTwoPoints(unittest.TestCase):
     def test_case_1(self):
         self.assertEqual(0, len(getTotalX([100, 99, 98, 97, 96, 95, 94, 93, 92,
             91], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])))
+
+    def test_case_3(self):
+        self.assertEqual(2, len(getTotalX([3, 9, 6], [36, 72])))
 
 if __name__ == '__main__':
     unittest.main()

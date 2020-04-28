@@ -7,6 +7,7 @@ import re
 import sys
 from typing import List
 from itertools import zip_longest
+from math import sqrt
 
 #
 # Complete the 'getTotalX' function below.
@@ -18,10 +19,10 @@ from itertools import zip_longest
 #
 
 def getTotalX(a: List[int], b: List[int]):
-    candidates = [int(b_i / a_i) for b_i in b for a_i in a if int(b_i / a_i) != 0]
-    candidates = candidates + a + b
+    # candidates = [int(b_i / a_i) for b_i in b for a_i in a if int(b_i / a_i) != 0]
 
-    print(candidates)
+    candidates = range(min(a), int(max(b)))
+
     valid = validate_answers(candidates, a, b)
 
     print(valid)

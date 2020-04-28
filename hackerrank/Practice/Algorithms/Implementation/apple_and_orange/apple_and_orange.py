@@ -10,7 +10,10 @@ from typing import List
 
 # Complete the countApplesAndOranges function below.
 def countApplesAndOranges(s: int, t: int, a: int, b: int, apples: List[int], oranges: List[int]):
-    pass
+    ap = [apple for apple in apples if a + apple >= s and a + apple <= t]
+    og = [orange for orange in oranges if b + orange >= s and b + orange <= t]
+
+    return (len(ap), len(og))
 
 if __name__ == '__main__':
     st = input().split()

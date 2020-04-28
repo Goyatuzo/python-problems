@@ -1,10 +1,10 @@
 import unittest
 
-from apple_and_orange import getTotalX
+from apple_and_orange import countApplesAndOranges
 
 class TestAppleAndOrange(unittest.TestCase):
     def test_given(self):
-        pass
+        self.assertEqual((1, 1), countApplesAndOranges(7, 11, 5, 15, [-2, 2, 1], [5, -6]))
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ import sys
 
 # Complete the countApplesAndOranges function below.
 def countApplesAndOranges(s, t, a, b, apples, oranges):
+    pass
 
 if __name__ == '__main__':
     st = input().split()

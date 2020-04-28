@@ -6,8 +6,10 @@ import random
 import re
 import sys
 
+from typing import List
+
 # Complete the countApplesAndOranges function below.
-def countApplesAndOranges(s, t, a, b, apples, oranges):
+def countApplesAndOranges(s: int, t: int, a: int, b: int, apples: List[int], oranges: List[int]):
     pass
 
 if __name__ == '__main__':

@@ -52,7 +52,13 @@ def timeInWords(h: int, m: int):
         minutes = str(60 - m)
 
         return f'twenty {text_dict[int(minutes[1])]} minutes to {text_dict[h + 1]}'
-    pass
+    elif m == 15:
+        return f'quarter past {text_dict[h]}'
+    elif m == 20:
+        return f'twenty minutes past {text_dict[h]}'
+    elif m > 20:
+        minutes = str(m)
+        return f'twenty {text_dict[int(minutes[1])]} minutes to {text_dict[h]}'
 
 
 if __name__ == '__main__':

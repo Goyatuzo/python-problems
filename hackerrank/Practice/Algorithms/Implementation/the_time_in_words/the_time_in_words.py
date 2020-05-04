@@ -58,7 +58,7 @@ def timeInWords(h: int, m: int):
         return f'twenty minutes past {text_dict[h]}'
     elif m > 20:
         minutes = str(m)
-        return f'twenty {text_dict[int(minutes[1])]} minutes to {text_dict[h]}'
+        return f'twenty {text_dict[int(minutes[1])]} minutes past {text_dict[h]}'
 
 
 if __name__ == '__main__':

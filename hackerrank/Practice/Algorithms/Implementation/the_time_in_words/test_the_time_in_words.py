@@ -21,5 +21,8 @@ class TestTheTimeInWords(unittest.TestCase):
     def test_twenty_four_to_hour(self):
         self.assertEqual('twenty four minutes to six', timeInWords(5, 36))
 
+    def test_twenty_plus_past_hour(self):
+        self.assertEqual('twenty eight minutes past five', timeInWords(5, 28))
+
 if __name__ == '__main__':
     unittest.main()

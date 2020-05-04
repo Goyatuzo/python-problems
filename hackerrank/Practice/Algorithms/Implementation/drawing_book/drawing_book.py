@@ -7,7 +7,7 @@ import sys
 # Complete the pageCount function below.
 #
 def pageCount(n: int, p: int):
-    pass
+    return min(int(p / 2), int(n / 2) - int(p / 2))
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

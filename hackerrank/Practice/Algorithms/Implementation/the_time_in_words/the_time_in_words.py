@@ -6,7 +6,7 @@ import random
 import re
 import sys
 
-num_dict = {
+text_dict = {
     1: 'one',
     2: 'two',
     3: 'three',
@@ -18,12 +18,37 @@ num_dict = {
     9: 'nine',
     10: 'ten',
     11: 'eleven',
-    12: 'twelve'
+    12: 'twelve',
+    13: 'thirteen',
+    14: 'fourteen',
+    15: 'quarter',
+    16: 'sixteen',
+    17: 'seventeen',
+    18: 'eighteen',
+    19: 'nineteen'
+}
+
+tens_dict = {
+    2: 'twenty',
+    3: 'thirty',
+    4: 'fourty'
 }
 
 # Complete the timeInWords function below.
 def timeInWords(h: int, m: int):
-    pass
+    hours = text_dict[h]
+
+    minutes = str(m)
+
+    if m == 0:
+        return f'{hours} o\' clock'
+
+    tens_text = tens_dict[int(minutes[0])]
+    minutes_text = text_dict[int(minutes[1])]
+
+    return hours + tens_text + minutes_text
+
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

@@ -46,7 +46,12 @@ def timeInWords(h: int, m: int):
             m_text = 'minutes '
 
         return f'{minutes_text} {m_text}to {text_dict[h + 1]}'
+    elif m == 40:
+        return f'twenty minutes to {text_dict[h + 1]}'
+    elif m > 30:
+        minutes = str(60 - m)
 
+        return f'twenty {text_dict[int(minutes[1])]} minutes to {text_dict[h + 1]}'
     pass
 
 

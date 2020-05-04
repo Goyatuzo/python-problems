@@ -15,5 +15,11 @@ class TestTheTimeInWords(unittest.TestCase):
     def test_keyword_to_hour(self):
         self.assertEqual('quarter to six', timeInWords(5, 45))
 
+    def test_twenty_mins_to_hour(self):
+        self.assertEqual('twenty minutes to six', timeInWords(5, 40))
+
+    def test_twenty_four_to_hour(self):
+        self.assertEqual('twenty four minutes to six', timeInWords(5, 36))
+
 if __name__ == '__main__':
     unittest.main()

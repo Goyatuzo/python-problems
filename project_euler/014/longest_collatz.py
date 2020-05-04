@@ -6,6 +6,10 @@ import random
 import re
 import sys
 
+cache = {
+    1: 1
+}
+
 def next_chain(n: int) -> int:
     if n % 2 == 0:
         return n / 2
@@ -15,19 +19,35 @@ def next_chain(n: int) -> int:
 def longest_collatz(n: int) -> int:
     maximum = 0
     maximum_num = 0
-    for i in range(1, n + 1):
+    for i in range(2, n + 1):
         l = 1
         curr = i
+        chain = []
 
         while curr != 1:
-            curr = next_chain(curr)
-            l += 1
+            chain.append(curr)
+
+            if curr in cache:
+                l += cache[curr]
+                break
+            else:
+                curr = next_chain(curr)
+                l += 1
+    
+        if chain[-1] in cache:
+            length = cache[chain[-1]]
+        else:
+            length = 1
+
+        for val in chain[::-1]:
+            cache[val] = length
+            length += 1
 
         if l >= maximum:
             maximum_num = i
             maximum = l
 
-        print(f'i: {i}, max: {maximum_num}, length of i: {l}')
+        # print(f'i: {i}, max: {maximum_num}, length of i: {l}')
 
     return maximum_num
 

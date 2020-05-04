@@ -33,5 +33,8 @@ class TestTheTimeInWords(unittest.TestCase):
     def test_half_past_hour(self):
         self.assertEqual('half past five', timeInWords(5, 30))
 
+    def test_one_minute(self):
+        self.assertEqual('one minute past five', timeInWords(5, 1))
+
 if __name__ == '__main__':
     unittest.main()

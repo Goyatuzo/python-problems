@@ -64,8 +64,10 @@ def timeInWords(h: int, m: int):
 
         if m == 15:
             m_text = ''
-        else:
+        elif m > 1:
             m_text = 'minutes '
+        else:
+            m_text = 'minute '
 
         return f'{minutes_text} {m_text}past {text_dict[h]}'
 

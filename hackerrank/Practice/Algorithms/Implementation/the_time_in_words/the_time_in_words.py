@@ -7,47 +7,42 @@ import re
 import sys
 
 text_dict = {
-    1: 'one',
-    2: 'two',
-    3: 'three',
-    4: 'four',
-    5: 'five',
-    6: 'six',
-    7: 'seven',
-    8: 'eight',
-    9: 'nine',
-    10: 'ten',
-    11: 'eleven',
-    12: 'twelve',
-    13: 'thirteen',
-    14: 'fourteen',
-    15: 'quarter',
-    16: 'sixteen',
-    17: 'seventeen',
-    18: 'eighteen',
-    19: 'nineteen'
-}
-
-tens_dict = {
-    2: 'twenty',
-    3: 'thirty',
-    4: 'fourty'
-}
+        1: 'one',
+        2: 'two',
+        3: 'three',
+        4: 'four',
+        5: 'five',
+        6: 'six',
+        7: 'seven',
+        8: 'eight',
+        9: 'nine',
+        10: 'ten',
+        11: 'eleven',
+        12: 'twelve',
+        13: 'thirteen',
+        14: 'fourteen',
+        15: 'quarter',
+        16: 'sixteen',
+        17: 'seventeen',
+        18: 'eighteen',
+        19: 'nineteen'
+        }
 
 # Complete the timeInWords function below.
 def timeInWords(h: int, m: int):
-    hours = text_dict[h]
-
-    minutes = str(m)
-
+    # o' clock case
     if m == 0:
+        hours = text_dict[h]
         return f'{hours} o\' clock'
 
-    tens_text = tens_dict[int(minutes[0])]
-    minutes_text = text_dict[int(minutes[1])]
+    if m > 40:
+        minutes = 60 - m
 
-    return hours + tens_text + minutes_text
+        minutes_text = text_dict[minutes]
 
+        return f'{minutes_text} minutes to {text_dict[h + 1]}'
+
+    pass
 
 
 if __name__ == '__main__':

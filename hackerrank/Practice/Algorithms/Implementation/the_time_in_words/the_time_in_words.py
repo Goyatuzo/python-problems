@@ -34,6 +34,8 @@ def timeInWords(h: int, m: int):
     if m == 0:
         hours = text_dict[h]
         return f'{hours} o\' clock'
+    elif m == 30:
+        return f'half past {text_dict[h]}'
 
     if m > 40:
         minutes = 60 - m
@@ -52,13 +54,20 @@ def timeInWords(h: int, m: int):
         minutes = str(60 - m)
 
         return f'twenty {text_dict[int(minutes[1])]} minutes to {text_dict[h + 1]}'
-    elif m == 15:
-        return f'quarter past {text_dict[h]}'
     elif m == 20:
         return f'twenty minutes past {text_dict[h]}'
     elif m > 20:
         minutes = str(m)
         return f'twenty {text_dict[int(minutes[1])]} minutes past {text_dict[h]}'
+    else:
+        minutes_text = text_dict[m]
+
+        if m == 15:
+            m_text = ''
+        else:
+            m_text = 'minutes '
+
+        return f'{minutes_text} {m_text}past {text_dict[h]}'
 
 
 if __name__ == '__main__':

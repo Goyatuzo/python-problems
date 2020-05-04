@@ -26,7 +26,7 @@ text_dict = {
         17: 'seventeen',
         18: 'eighteen',
         19: 'nineteen'
-        }
+}
 
 # Complete the timeInWords function below.
 def timeInWords(h: int, m: int):
@@ -40,7 +40,12 @@ def timeInWords(h: int, m: int):
 
         minutes_text = text_dict[minutes]
 
-        return f'{minutes_text} minutes to {text_dict[h + 1]}'
+        if m == 45:
+            m_text = ''
+        else:
+            m_text = 'minutes '
+
+        return f'{minutes_text} {m_text}to {text_dict[h + 1]}'
 
     pass
 

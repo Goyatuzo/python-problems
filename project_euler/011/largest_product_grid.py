@@ -52,8 +52,8 @@ def solve_first(in_a_row: int) -> int:
                 if j + limit < len(arr) and i + limit < len(arr):
                     se_total *= arr[i + k][j + k]
                 # Southwest
-                if j - limit >= 0 and i - limit >= 0:
-                    sw_total *= arr[i - k][j - k]
+                if j - limit >= 0 and i + limit < len(arr):
+                    sw_total *= arr[i + k][j - k]
 
             max_adjacent = max(
                 [e_total, s_total, se_total, sw_total, max_adjacent])

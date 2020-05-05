@@ -40,7 +40,7 @@ def longest_collatz(n: int) -> int:
             length = 1
 
         for val in chain[::-1]:
-            cache[val] = length
+            cache[int(val)] = length
             length += 1
 
         if l >= maximum:

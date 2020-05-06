@@ -20,17 +20,21 @@ def longest_collatz(n: int) -> int:
     maximum = 0
     maximum_num = 0
     for i in range(2, n + 1):
-        l = 1
+        l = 0
         curr = i
         chain = []
+
+        print(i)
 
         while curr != 1:
             chain.append(curr)
 
             if curr in cache:
+                print('cache hit')
                 l += cache[curr]
                 break
             else:
+                print('cache miss')
                 curr = next_chain(curr)
                 l += 1
     
@@ -47,6 +51,8 @@ def longest_collatz(n: int) -> int:
             maximum_num = i
             maximum = l
 
+
+        print(cache)
         # print(f'i: {i}, max: {maximum_num}, length of i: {l}')
 
     return maximum_num

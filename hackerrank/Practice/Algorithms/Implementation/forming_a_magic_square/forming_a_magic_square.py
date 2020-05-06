@@ -8,6 +8,16 @@ import sys
 
 from typing import List
 
+def magic_square_delta(s: List[List[int]]) -> int:
+    magic_square = formingMagicSquare(s)
+
+    total = 0
+    for i in range(len(s)):
+        for j in range(len(s[i])):
+            total += abs(s[i][j] - magic_square[i][j])
+
+    return total
+
 # Complete the formingMagicSquare function below.
 def formingMagicSquare(s: List[List[int]]):
     pass

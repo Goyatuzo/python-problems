@@ -16,6 +16,12 @@ def minimumLoss(price: List[int]) -> int:
 
     for i in range(len(price) - 2):
         # Find the max value of the valid entries
+        valid_vals = [val for val in price[i + 1:] if val < price[i]]
+
+        # If there are no valid values left, just skip
+        if len(valid_vals) == 0:
+            continue
+
         biggest = max([val for val in price[i + 1:] if val < price[i]])
 
         diff = price[i] - biggest

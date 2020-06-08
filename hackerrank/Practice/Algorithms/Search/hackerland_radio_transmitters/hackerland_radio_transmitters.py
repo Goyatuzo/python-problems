@@ -6,27 +6,32 @@ import random
 import re
 import sys
 
-from typing import List
+from typing import List, Tuple
 
 # Complete the hackerlandRadioTransmitters function below.
 def hackerlandRadioTransmitters(x: List[int], k: int):
     transmitters = [] 
     x.sort()
+    
+    i = 0
 
-    start_pt = None
-    for pt in x:
-        if start_pt is None:
-            start_pt = pt
-            continue
+    while i < len(x):
+        target_location = x[i] + k
 
-        if start_pt + 2 * k > pt:
-            transmitters.append(start_pt)
-            start_pt = pt
-        elif start_pt + 2 * k == pt:
-            transmitters.append(start_pt)
-            start_pt = None
+        while i < len(x) and x[i] <= target_location:
+            i += 1
+
+        # Found the center
+        i -= 1
+        transmitters.append(x[i])
+        target_location = x[i] + k
+
+        # Go to the right edge
+        while i < len(x) and x[i] <= target_location:
+            i += 1
 
     print(transmitters)
+
     return transmitters
 
 

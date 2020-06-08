@@ -30,8 +30,6 @@ def hackerlandRadioTransmitters(x: List[int], k: int):
         while i < len(x) and x[i] <= target_location:
             i += 1
 
-    print(transmitters)
-
     return transmitters
 
 

@@ -1,11 +1,13 @@
 import unittest
 
+from os import getcwd, path
+from pathlib import Path
 from minimum_loss import minimumLoss
 
 
 class TestMinimumLoss(unittest.TestCase):
     def open_file(self, fname: str):
-        with open(fname, 'r') as f:
+        with open(path.join(Path(__file__).parent, fname), 'r') as f:
             f.readline()
             price = list(map(int, f.readline().rstrip().split()))
             return price

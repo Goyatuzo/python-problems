@@ -6,15 +6,27 @@ import random
 import re
 import sys
 
-from typings import List
+from typing import List
 
 # https://www.hackerrank.com/challenges/pairs/problem
 
 # Complete the pairs function below.
 def pairs(k: int, arr: List[int]) -> int:
+    # Store the dictionary of numbers here
     number_dict = {}
+    
+    # Each number is uniqe, so we don't need to do any checking
+    for i in arr:
+        number_dict[i] = 1
 
-    pass
+    # Keep total of number of pairs
+    total = 0
+
+    for key in number_dict:
+        if key - k in number_dict:
+            total += 1
+
+    return total
 
 
 if __name__ == '__main__':

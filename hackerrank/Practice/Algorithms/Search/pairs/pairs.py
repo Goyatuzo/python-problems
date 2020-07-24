@@ -12,6 +12,8 @@ from typing import List
 
 # Complete the pairs function below.
 def pairs(k: int, arr: List[int]) -> int:
+    """Convert arr to dictionary. For each value in arr, check if k - arr
+    exists in the dictionary. If it does, we found a pair."""
     # Store the dictionary of numbers here
     number_dict = {}
     

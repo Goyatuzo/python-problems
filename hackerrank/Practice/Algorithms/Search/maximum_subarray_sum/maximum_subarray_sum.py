@@ -8,9 +8,19 @@ import sys
 
 # https://www.hackerrank.com/challenges/maximum-subarray-sum/problem
 
+from typing import List
+
 # Complete the maximumSum function below.
-def maximumSum(a, m):
-    pass
+def maximumSum(a: List[int], m: int):
+    """Keep a main list that contains all the subsets upto the nth element."""
+    lst = []
+
+    for num in a:
+        tmp = [num + i for i in lst]
+        tmp.append(num)
+        lst = tmp + lst
+
+    return max([x % m for x in lst])
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

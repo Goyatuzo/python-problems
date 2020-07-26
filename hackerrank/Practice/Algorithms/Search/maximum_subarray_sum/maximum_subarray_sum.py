@@ -15,10 +15,21 @@ def maximumSum(a: List[int], m: int):
     """Keep a main list that contains all the subsets upto the nth element."""
     lst = []
 
+    # so that we can accept the first element
+    prev_l = 0
+
     for num in a:
-        tmp = [num + i for i in lst]
+        tmp = [num + i for idx, i in enumerate(lst) if idx < prev_l]
         tmp.append(num)
+
+        prev_l = len(tmp)
+        print(f'tmp: {tmp}, apd: {tmp + lst}, tmp_l: {prev_l}')
         lst = tmp + lst
+
+    n = len(a)
+
+    print(lst)
+    assert len(lst) == n * (n + 1) / 2
 
     return max([x % m for x in lst])
 

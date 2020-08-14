@@ -13,3 +13,9 @@ def way_too_long_words(word: str) -> str:
         return word[0] + str(len(word) - 2) + word[-1]
 
     return word
+
+if __name__ == '__main__':
+    n = int(input())
+
+    for _ in range(n):
+        print(way_too_long_words(input()))

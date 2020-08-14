@@ -5,22 +5,35 @@ def before_an_exam(days: int, total_time: int, reqs: List[Tuple[int, int]]) -> T
     """
     He has to study not less than minTime i and not more than maxTime i hours per each i-th day.
     """
-    times = ''
-    for tup in reqs:
-        if tup[1] <= total_time:
-            # Subtract the largest amount of time possible from pool.
-            total_time -= tup[1]
-            times = times + f'{tup[1]} '
-        elif tup[0] < total_time:
-            # Total time only has itself remaining as the time
-            times = times + f'{total_time} '
-            total_time = 0
 
-    # If there is time left over or too much taken away, he did not follow his parent's instructions.
-    if total_time != 0:
+    # First let's try using all of max
+    prospect = [i[1] for i in reqs]
+
+    curr_sum = sum(prospect)
+
+
+    curr_i = len(prospect) - 1
+    while curr_sum > total_time and curr_i >= 0:
+        sum_diff = curr_sum - total_time
+        necessary = reqs[curr_i][1] - sum_diff
+
+        if necessary >= reqs[curr_i][0] and necessary <= reqs[curr_i][1]:
+            prospect[curr_i] = necessary 
+
+            curr_sum += necessary 
+            curr_sum -= reqs[curr_i][1]
+        else:
+            prospect[curr_i] = reqs[curr_i][0]
+            # currsum can be recomputed in constant time since we have both values
+            curr_sum += reqs[curr_i][0]
+            curr_sum -= reqs[curr_i][1]
+
+        curr_i -= 1
+
+    if sum(prospect) != total_time:
         return ['NO', '']
-
-    return ['YES', times]
+    
+    return ['YES', ' '.join([str(i) for i in prospect])]
 
 
 if __name__ == '__main__':

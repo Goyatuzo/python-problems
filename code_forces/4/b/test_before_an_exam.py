@@ -9,6 +9,7 @@ class TestBeforeAnExam(unittest.TestCase):
 
     def test_tests(self):
         self.assertEqual(['NO', ''], foo(1, 1, [(5, 6)]))
+        self.assertEqual(['YES', '5 0 '], foo(2, 5, [(4, 6), (0, 0)]))
 
 if __name__ == '__main__':
     unittest.main()

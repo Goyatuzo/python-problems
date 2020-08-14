@@ -7,11 +7,7 @@ def before_an_exam(days: int, total_time: int, reqs: List[Tuple[int, int]]) -> T
     """
     times = ''
     for tup in reqs:
-        if total_time == 0:
-            # Total time hit 0 before each requirement could be met, so
-            # he did not follow his parent's instructions.
-            return ['NO', '']
-        elif tup[1] < total_time:
+        if tup[1] <= total_time:
             # Subtract the largest amount of time possible from pool.
             total_time -= tup[1]
             times = times + f'{tup[1]} '
@@ -20,8 +16,8 @@ def before_an_exam(days: int, total_time: int, reqs: List[Tuple[int, int]]) -> T
             times = times + f'{total_time} '
             total_time = 0
 
-    # If there is time left over, he did not follow his parent's instructions.
-    if total_time > 0:
+    # If there is time left over or too much taken away, he did not follow his parent's instructions.
+    if total_time != 0:
         return ['NO', '']
 
     return ['YES', times]

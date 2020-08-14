@@ -11,3 +11,9 @@ def registration_system(name: str) -> str:
         return 'OK'
 
     return f'{name}{db[name]}'
+
+if __name__ == '__main__':
+    n = int(input())
+
+    for _ in range(n):
+        print(registration_system(input()))

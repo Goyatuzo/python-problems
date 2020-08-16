@@ -11,6 +11,9 @@ class TestOmkarAndWaterslide(unittest.TestCase):
         self.assertEqual(3, foo('LLLLRRLRRRLL'))
         self.assertEqual(2, foo('RRRRR'))
 
+    def test_self(self):
+        self.assertEqual(0, foo('LRRL'))
+
 
 if __name__ == '__main__':
     unittest.main()

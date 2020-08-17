@@ -6,28 +6,30 @@ def omkar_and_bed_wars(dirs: str) -> int:
     i = 0
 
     while i < len(dirs):
-        # Special cases for beginning and end
-        if (i == 0 or i == len(dirs) - 2) and (dirs[i:i+2] == 'LR'):
-            i += 2
-            continue
-        if (i == len(dirs) - 1 and dirs[i] == 'R'):
-            break
-
-        three = dirs[i:i+3]
-
-        # RRL is ok
-        if three == 'RRL' or three == 'RLL':
-            i += 3
-            continue
-
         two = dirs[i:i+2]
+        three = dirs[i:i+3]
+        four = dirs[i:i+4]
 
-        if two != 'RL':
+        if len(two) == 1:
+            i += 1
+        elif four == 'RRRL' or four == 'RRRR':
+            ops += 1
+            i += 4
+        elif two == 'RL':
+            i += 2
+        elif two == 'LL':
             ops += 1
             i += 2
-            continue
-
-        i += 2
+        elif three == 'RRL' or three == 'RLL':
+            i += 3
+        elif three == 'RRR' or three == 'RLL':
+            ops += 1
+            i += 3
+        elif two == 'RR':
+            ops += 1
+            i += 2
+        else:
+            i += 1
 
     return ops
 

@@ -10,22 +10,32 @@ def omkar_and_bed_wars(dirs: str) -> int:
         three = dirs[i:i+3]
         four = dirs[i:i+4]
 
-        if len(two) == 1:
+        if len(two) == 1 and two == 'R':
             i += 1
-        elif four == 'RRRL' or four == 'RRRR':
+        elif four == 'RRRL':
+            print(f'{four} + 1')
             ops += 1
             i += 4
         elif two == 'RL':
+            print(two)
             i += 2
+        elif three == 'LLL':
+            print(f'{three} + 1')
+            ops += 1
+            i += 3
         elif two == 'LL':
+            print(f'{two} + 1')
             ops += 1
             i += 2
         elif three == 'RRL' or three == 'RLL':
+            print(three)
             i += 3
-        elif three == 'RRR' or three == 'RLL':
+        elif three == 'RRR':
+            print(f'{three} + 1')
             ops += 1
             i += 3
         elif two == 'RR':
+            print(f'{two} + 1')
             ops += 1
             i += 2
         else:

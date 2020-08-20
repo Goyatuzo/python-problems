@@ -23,7 +23,7 @@ class TestMysteriousPresent(unittest.TestCase):
 
     def test_self_two(self):
         self.assertEqual((1, '2'), foo(5, 5, [(6, 7), (6, 6)]))
-        self.assertEqual((1, '2'), foo(5, 5, [(7, 6), (6, 6)]))
+        self.assertEqual((1, '1'), foo(5, 5, [(7, 6), (6, 6)]))
 
     
 

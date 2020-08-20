@@ -10,11 +10,23 @@ def mysterious_present(w: int, h: int, envelopes: List[Tuple[int, int]]) -> Tupl
     prev = (-1, -1)
 
     for idx, dims in envs:
-        if (prev[0] >= dims[0] or prev[1] >= dims[1]) or (dims[0] <= w or dims[1] <= h):
+        # Skip envelopes that can't fit the base cards
+        if (dims[0] <= w or dims[1] <= h):
             continue
 
-        chain.append(str(idx))
-        prev = dims
+        # If the widths are the same, skip since we want the smallest
+        if prev[0] == dims[0] and prev[1] <= dims[1]:
+            continue
+
+        # If STRICTLY LARGER, then add to the chain
+        if prev[0] < dims[0] and prev[1] < dims[1]:
+            chain.append(str(idx))
+            prev = dims
+        # Otherwise, this element will be a member of the longest chain
+        else:
+            chain.pop()
+            chain.append(str(idx))
+            prev = dims
 
     return (len(chain), ' '.join(chain))
 

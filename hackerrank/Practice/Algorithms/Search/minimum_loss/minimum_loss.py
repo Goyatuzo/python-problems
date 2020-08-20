@@ -6,16 +6,16 @@ import random
 import re
 import sys
 
-from typing import List
+from typing import List, Tuple
 
 # https://www.hackerrank.com/challenges/minimum-loss/problem
 
 
-def find_min(lst: List[int], thresh: int) -> int:
+def find_min(lst: List[int], thresh: int) -> Tuple[int, int]:
     """Find the min in a given list and threshold. Assumes
     the input list is sorted in ascending order."""
     if len(lst) < 2:
-        return lst[0]
+        return (lst[0], lst[1])
 
     local_min = lst[1] - lst[0]
     min_tup = (lst[0], lst[1])

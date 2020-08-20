@@ -1,34 +1,21 @@
 from typing import List, Tuple
 
 def mysterious_present(w: int, h: int, envelopes: List[Tuple[int, int]]) -> Tuple[int, str]:
-    # Attach original index to each envelope
-    envs = [(i + 1, dims) for i, dims in enumerate(envelopes)]
+    # Attach original index to each envelope, and filter out non-conformers
+    envs = [(i + 1, dims) for i, dims in enumerate(envelopes) if dims[0] > w and dims[1] > h]
     # Now sort the envelopes
     envs = sorted(envs, key=lambda env: (env[1][0], env[1][1]))
+    
+    # Store the chains in here
+    chain = [(0, el) for el in envs]
+    # Set first element in chain to 1
+    chain[0] = (1, chain[0][1])
+    
+    for i in range(len(envs)):
+        for j in range(i, len(envs)):
+            
 
-    chain = []
-    prev = (-1, -1)
 
-    for idx, dims in envs:
-        # Skip envelopes that can't fit the base cards
-        if (dims[0] <= w or dims[1] <= h):
-            continue
-
-        # If the widths are the same, skip since we want the smallest
-        if prev[0] == dims[0] and prev[1] <= dims[1]:
-            continue
-
-        # If STRICTLY LARGER, then add to the chain
-        if prev[0] < dims[0] and prev[1] < dims[1]:
-            chain.append(str(idx))
-            prev = dims
-        # Otherwise, this element will be a member of the longest chain
-        else:
-            chain.pop()
-            chain.append(str(idx))
-            prev = dims
-
-    return (len(chain), ' '.join(chain))
 
 if __name__ == '__main__':
     n, w, h = map(int, input().split(' '))

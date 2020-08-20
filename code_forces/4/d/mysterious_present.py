@@ -10,8 +10,7 @@ def mysterious_present(w: int, h: int, envelopes: List[Tuple[int, int]]) -> Tupl
     prev = (-1, -1)
 
     for idx, dims in envs:
-        if prev == dims:
-            prev = dims
+        if (prev[0] >= dims[0] or prev[1] >= dims[1]) or (dims[0] <= w or dims[1] <= h):
             continue
 
         chain.append(str(idx))

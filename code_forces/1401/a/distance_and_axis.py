@@ -9,9 +9,15 @@ def distance_and_axis(n: int, k: int) -> int:
 		return k
 
 	if k > n:
-		return k % n
+		return k - n
+
+	b_prelim = (n - k) / 2
+
+	if b_prelim.is_integer():
+		return 0
 	else:
-		return round(1 / (k / n)) * k - n
+		return 1
+
 
 
 if __name__ == '__main__':

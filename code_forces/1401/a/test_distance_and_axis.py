@@ -22,13 +22,17 @@ class TestDistanceAndAxis(unittest.TestCase):
 		self.assertEqual(0, foo(1000000, 1000000))
 
 	def test_self(self):
-		self.assertEqual(0, foo(10, 5))
+		self.assertEqual(1, foo(10, 5))
 	
 	def test_self_two(self):
-		self.assertEqual(2, foo(8, 5))
+		self.assertEqual(1, foo(8, 5))
 	
 	def test_self_three(self):
-		self.assertEqual(1, foo(9, 5))
+		self.assertEqual(0, foo(9, 5))
+
+	def test_self_four(self):
+		self.assertEqual(0, foo(7, 5))
+	
 
 if __name__ == '__main__':
 	unittest.main()

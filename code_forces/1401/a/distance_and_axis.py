@@ -1,11 +1,17 @@
 
 def distance_and_axis(n: int, k: int) -> int:
-	if n > k and n % 2 == 1:
-		return 1
-	elif n > k and n % 2 == 0:
+	# All the 0 cases to prevent division by 0
+	if k == 0 and n % 2 == 0:
 		return 0
+	elif k == 0:
+		return 1
+	elif n == 0:
+		return k
 
-	return k - n
+	if k > n:
+		return k % n
+	else:
+		return round(1 / (k / n)) * k - n
 
 
 if __name__ == '__main__':

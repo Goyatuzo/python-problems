@@ -2,18 +2,26 @@ from typing import List, Tuple
 
 def mysterious_present(w: int, h: int, envelopes: List[Tuple[int, int]]) -> Tuple[int, str]:
     # Attach original index to each envelope, and filter out non-conformers
-    envs = [(i + 1, dims) for i, dims in enumerate(envelopes) if dims[0] > w and dims[1] > h]
+    envs_filtered = [(i, dims) for i, dims in enumerate(envelopes) if dims[0] > w and dims[1] > h]
     # Now sort the envelopes
-    envs = sorted(envs, key=lambda env: (env[1][0], env[1][1]))
+    envs = sorted(envs_filtered, key=lambda env: (env[1][0], env[1][1]))
     
-    # Store the chains in here
-    chain = [(0, el) for el in envs]
-    # Set first element in chain to 1
-    chain[0] = (1, chain[0][1])
+    # The chain begins with the first value
+    chain = [[el[0]] for el in envs]
     
     for i in range(len(envs)):
-        for j in range(i, len(envs)):
-            
+        curr = envs[i]
+        compar = envs_filtered[i]
+
+        if compar[0] < curr[0] and compar[1] < curr[1]:
+            chain[i].append(curr[0])
+        else:
+            chain[i].pop()
+            chain[i].append(curr[0])
+           
+        print(chain[i])
+
+    return (len(chain), ' '.join(list(map(str, chain[-1]))))
 
 
 

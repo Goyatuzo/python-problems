@@ -22,8 +22,8 @@ class TestMysteriousPresent(unittest.TestCase):
         self.assertEqual((2, '4 3'), foo(1000, 998, [(5002, 5005), (5003, 5004), (5003, 5002), (5002, 5001), (5002, 5002)]))
 
     def test_self_two(self):
-        self.assertEqual((1, '1'), foo(5, 5, [(6, 7), (6, 6)]))
-        self.assertEqual((1, '1'), foo(5, 5, [(7, 6), (6, 6)]))
+        self.assertEqual((1, '2'), foo(5, 5, [(6, 7), (6, 6)]))
+        self.assertEqual((1, '2'), foo(5, 5, [(7, 6), (6, 6)]))
 
     
 

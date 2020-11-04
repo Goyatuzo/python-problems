@@ -25,6 +25,14 @@ class TestMysteriousPresent(unittest.TestCase):
         self.assertEqual((1, '2'), foo(5, 5, [(6, 7), (6, 6)]))
         self.assertEqual((1, '2'), foo(5, 5, [(7, 6), (6, 6)]))
 
+    def test_16(self):
+        self.assertEqual(3, '2 1 3', foo(6134, 8495, [
+            (9045, 8632),
+            (6552, 8552),
+            (9429, 8736),
+            (6680, 9984)
+        ]))
+
     
 
 if __name__ == '__main__':

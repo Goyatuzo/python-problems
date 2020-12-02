@@ -22,13 +22,11 @@ def pw_phil_valid(line: str) -> bool:
 def pw_phil_valid_two(line: str) -> bool:
     begin, end, let, pw = pw_phil_splitter(line)
 
-    # Since they use 1-based indexing, subtract 1 to get 0-based
-    to_process = pw[begin - 1:end - 1]
-
-    let_count = to_process.count(let)
+    first = pw[begin - 1] == let
+    second = pw[end - 1] == let
 
     # EXACTLY 1 occurance must happen
-    return let_count == 1
+    return (first and not second) or (not first and second)
 
 if __name__ == "__main__":
     lst = []

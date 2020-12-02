@@ -1,8 +1,11 @@
 from typing import List
 
-def sum_aoc(l: List[int], tgt: int):
+def sum_aoc_sort(l: List[int], tgt: int):
     l.sort()
 
+    return sum_aoc(l, tgt)
+
+def sum_aoc(l: List[int], tgt: int):
     # Two pointers, increment or decrement one at a time until answer is hit
     begin = 0
     end = len(l) - 1
@@ -18,6 +21,21 @@ def sum_aoc(l: List[int], tgt: int):
     # If it reaches this point, no two values add to tgt
     return -1
 
+def sum_three(l: List[int], tgt: int):
+    l.sort()
+
+    for i in range(len(l)):
+        sub_target = tgt - l[i] 
+        sub_problem = sum_aoc(l[i:], sub_target)
+
+        # If answer was found, return it.
+        if sub_problem != -1:
+            return sub_problem * l[i]
+
+    return -1
+
+
+
 if __name__ == "__main__":
     lst = []
 
@@ -28,4 +46,5 @@ if __name__ == "__main__":
             lst.append(int(line))
             line = f.readline()
 
-    print(sum_aoc(lst, 2020))
+    print(f'Part 1: {sum_aoc_sort(lst, 2020)}')
+    print(f'Part 2: {sum_three(lst, 2020)}')

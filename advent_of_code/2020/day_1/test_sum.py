@@ -1,10 +1,10 @@
 import unittest
 
-from sum import sum_aoc
+from sum import sum_aoc_sort
 
 class TestSumAOC(unittest.TestCase):
     def test_given(self):
-        self.assertEqual(514579, sum_aoc([1721,
+        self.assertEqual(514579, sum_aoc_sort([1721,
         979,
         366,
         299,

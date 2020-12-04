@@ -17,13 +17,15 @@ def tobaggan_gen(lst: List[str], step: int, down: int) -> int:
 
 
 
-def tobaggan_one(l) -> int:
-    if type(l) == str:
-        lst = l.replace(' ', '').split('\n') 
-    else:
-        lst = l
-
+def tobaggan_one(lst: List[str]) -> int:
     return tobaggan_gen(lst, 3, 1)
+
+def tobaggan_two(lst: List[str]) -> int:
+    return tobaggan_gen(lst, 1, 1) * \
+        tobaggan_gen(lst, 3, 1) * \
+        tobaggan_gen(lst, 5, 1) * \
+        tobaggan_gen(lst, 7, 1) * \
+        tobaggan_gen(lst, 1, 2)
 
 
 if __name__ == "__main__":
@@ -34,3 +36,4 @@ if __name__ == "__main__":
         lines = [line.strip() for line in lines]
 
     print(f'Part 1: {tobaggan_one(lines)}')
+    print(f'Part 2: {tobaggan_two(lines)}')

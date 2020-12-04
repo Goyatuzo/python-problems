@@ -3,8 +3,11 @@ from typing import List
 def str_to_lst(og: str) -> List[str]:
     return og.replace(' ', '').split('\n') 
 
-def tobaggan_one(l: str) -> int:
-    lst = str_to_lst(l)
+def tobaggan_one(l) -> int:
+    if type(l) == str:
+        lst = str_to_lst(l)
+    else:
+        lst = l
 
     tree = 0
     i = 0
@@ -19,3 +22,13 @@ def tobaggan_one(l: str) -> int:
 
 
     return tree
+
+
+if __name__ == "__main__":
+    with open('input.txt', 'r') as f:
+        lines = f.readlines()
+
+        # Strip out the newlines since it was messing up the number
+        lines = [line.strip() for line in lines]
+
+    print(f'Part 1: {tobaggan_one(lines)}')

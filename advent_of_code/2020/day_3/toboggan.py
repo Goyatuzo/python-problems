@@ -1,20 +1,12 @@
 from typing import List
 
-def str_to_lst(og: str) -> List[str]:
-    return og.replace(' ', '').split('\n') 
-
-def tobaggan_one(l) -> int:
-    if type(l) == str:
-        lst = str_to_lst(l)
-    else:
-        lst = l
-
+def tobaggan_gen(lst: List[str], step: int, down: int) -> int:
     tree = 0
     i = 0
     width = len(lst[0])
-    for y in range(1, len(lst)):
+    for y in range(1, len(lst), down):
         # Three to the right, wrap around if over max
-        i = (i + 3) % width
+        i = (i + step) % width
 
 
         if lst[y][i] == '#':
@@ -22,6 +14,16 @@ def tobaggan_one(l) -> int:
 
 
     return tree
+
+
+
+def tobaggan_one(l) -> int:
+    if type(l) == str:
+        lst = l.replace(' ', '').split('\n') 
+    else:
+        lst = l
+
+    return tobaggan_gen(lst, 3, 1)
 
 
 if __name__ == "__main__":

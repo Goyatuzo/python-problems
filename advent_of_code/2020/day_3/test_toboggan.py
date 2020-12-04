@@ -1,6 +1,6 @@
 import unittest
 
-from toboggan import toboggan_one
+from toboggan import tobaggan_one
 
 class TestToboggan(unittest.TestCase):
     def test_given_one(self):
@@ -17,7 +17,7 @@ class TestToboggan(unittest.TestCase):
         #...##....#
         .#..#...#.#"""
 
-        self.assertEqual(7, toboggan_one(s))
+        self.assertEqual(7, tobaggan_one(s))
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
 from typing import List
 
-def tobaggon_one(in: List[int]):
-    pass
+def tobaggan_one(l: List[int]):
+    return 0

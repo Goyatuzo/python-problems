@@ -1,4 +1,6 @@
 from typing import List
+from pathlib import Path
+from os import path
 
 def tobaggan_gen(lst: List[str], step: int, down: int) -> int:
     tree = 0
@@ -15,25 +17,28 @@ def tobaggan_gen(lst: List[str], step: int, down: int) -> int:
 
     return tree
 
-
-
-def tobaggan_one(lst: List[str]) -> int:
-    return tobaggan_gen(lst, 3, 1)
-
-def tobaggan_two(lst: List[str]) -> int:
-    return tobaggan_gen(lst, 1, 1) * \
-        tobaggan_gen(lst, 3, 1) * \
-        tobaggan_gen(lst, 5, 1) * \
-        tobaggan_gen(lst, 7, 1) * \
-        tobaggan_gen(lst, 1, 2)
-
-
-if __name__ == "__main__":
-    with open('input.txt', 'r') as f:
+def get_file(fname: str) -> List[str]:
+    with open(path.join(Path(__file__).parent, fname), 'r') as f:
         lines = f.readlines()
 
         # Strip out the newlines since it was messing up the number
-        lines = [line.strip() for line in lines]
+        return [line.strip() for line in lines]
 
-    print(f'Part 1: {tobaggan_one(lines)}')
-    print(f'Part 2: {tobaggan_two(lines)}')
+
+
+def tobaggan_one(fname: str) -> int:
+    lst = get_file(fname)
+    return tobaggan_gen(lst, 3, 1)
+
+def tobaggan_two(fname: str) -> int:
+    lst = get_file(fname)
+    return tobaggan_gen(lst, 1, 1) * \
+            tobaggan_gen(lst, 3, 1) * \
+            tobaggan_gen(lst, 5, 1) * \
+            tobaggan_gen(lst, 7, 1) * \
+            tobaggan_gen(lst, 1, 2)
+
+
+if __name__ == "__main__":
+    print(f'Part 1: {tobaggan_one("input.txt")}')
+    print(f'Part 2: {tobaggan_two("input.txt")}')

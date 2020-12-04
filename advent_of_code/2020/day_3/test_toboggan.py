@@ -1,40 +1,36 @@
 import unittest
 
-from toboggan import tobaggan_one, tobaggan_gen, tobaggan_two
+from toboggan import tobaggan_one, tobaggan_gen, tobaggan_two, get_file
 
 class TestToboggan(unittest.TestCase):
-    s =  """..##.......
-            #...#...#..
-            .#....#..#.
-            ..#.#...#.#
-            .#...##..#.
-            ..#.##.....
-            .#.#.#....#
-            .#........#
-            #.##...#...
-            #...##....#
-            .#..#...#.#""".replace(' ', '').split('\n')
-
     def test_given_one(self):
-        self.assertEqual(7, tobaggan_one(self.s))
+        self.assertEqual(7, tobaggan_one('test.txt'))
+
+    def f(self):
+        return get_file('test.txt')
 
     def test_given_two_one(self):
-        self.assertEqual(2, tobaggan_gen(self.s, 1, 1))
+        fc = self.f()
+        self.assertEqual(2, tobaggan_gen(fc, 1, 1))
 
     def test_given_two_two(self):
-        self.assertEqual(7, tobaggan_gen(self.s, 3, 1))
+        fc = self.f()
+        self.assertEqual(7, tobaggan_gen(fc, 3, 1))
 
     def test_given_two_three(self):
-        self.assertEqual(3, tobaggan_gen(self.s, 5, 1))
+        fc = self.f()
+        self.assertEqual(3, tobaggan_gen(fc, 5, 1))
 
     def test_given_two_four(self):
-        self.assertEqual(4, tobaggan_gen(self.s, 7, 1))
+        fc = self.f()
+        self.assertEqual(4, tobaggan_gen(fc, 7, 1))
 
     def test_given_two_five(self):
-        self.assertEqual(2, tobaggan_gen(self.s, 1, 2))
+        fc = self.f()
+        self.assertEqual(2, tobaggan_gen(fc, 1, 2))
 
     def test_given_two(self):
-        self.assertEqual(336, tobaggan_two(self.s))
+        self.assertEqual(336, tobaggan_two('test.txt'))
 
 if __name__ == '__main__':
     unittest.main()

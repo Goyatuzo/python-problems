@@ -13,7 +13,7 @@ class TestBoarding(unittest.TestCase):
         self.assertEqual(119, boarding_ticket('FFFBBBFRRR'))
 
     def test_given_four(self):
-        self.assertEqual(119, boarding_ticket('BBFFBBFRLL'))
+        self.assertEqual(820, boarding_ticket('BBFFBBFRLL'))
 
 if __name__ == '__main__':
     unittest.main()

@@ -21,8 +21,9 @@ class Customs:
 
 	def part_one(self) -> int:
 		# When it first runs, the last group doesn't get added
-		self.__group_answers.append(self.__current_group)
-		self.__current_group = []
+		if len(self.__current_group) > 0:
+			self.__group_answers.append(self.__current_group)
+			self.__current_group = []
 
 		unique_answers = 0
 
@@ -47,6 +48,41 @@ class Customs:
 
 		return unique_answers
 
+	
+	def part_two(self) -> int:
+		if len(self.__current_group) > 0:
+			self.__group_answers.append(self.__current_group)
+			self.__current_group = []
+
+		group_count = 0
+		for group in self.__group_answers:
+			# Keep track of how many people are in the group
+			people_in_group = len(group)
+			concated_answers = ''.join(group)
+			# Use sorting to get worst case n lg n, avoid dict
+			sorted_answers = sorted(concated_answers)
+
+			same_answers = []
+			answer_count = 0
+			for i, char in enumerate(sorted_answers):
+				# We need a previous character
+				if i == 0:
+					continue
+
+				# Add one for each answer that's repeated
+				if sorted_answers[i - 1] == char:
+					answer_count += 1
+
+				# If every person answered, there would be one less b/c it just counts dupes
+				if answer_count == people_in_group - 1:
+					same_answers.append(char)
+					answer_count = 0
+
+			group_count += len(same_answers)
+
+
+		return group_count
+
 if __name__ == '__main__':
 	customs = Customs()
 
@@ -61,3 +97,4 @@ if __name__ == '__main__':
 
 
 	print(f'Part 1: {customs.part_one()}')
+	print(f'Part 2: {customs.part_two()}')

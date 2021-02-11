@@ -1,6 +1,6 @@
 import unittest
 
-from answer import Solution
+from three_sum import Solution
 
 
 class TestAnswer(unittest.TestCase):

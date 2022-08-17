@@ -17,8 +17,19 @@ import sys
 #
 
 def subarray_division(s, d, m):
-    # Write your code here
-    pass
+    segment_count = 0
+
+    segment_sum = sum(s[:m])
+
+    for i in range(m, len(s)):
+        print(segment_sum)
+        if segment_sum == d:
+            segment_count += 1
+
+        segment_sum -= s[i-m]
+        segment_sum += s[i]
+
+    return segment_count
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

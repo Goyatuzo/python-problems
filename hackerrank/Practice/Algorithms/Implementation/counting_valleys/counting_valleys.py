@@ -16,7 +16,22 @@ import sys
 #
 
 def counting_valleys(steps, path):
-    pass
+    height = 0
+    count = 0
+
+    for s in path:
+        going_up = False
+        if s == 'D':
+            height -= 1
+        else:
+            height += 1
+            going_up = True
+
+        if height == 0 and going_up:
+            count += 1
+
+    return count
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -25,7 +40,7 @@ if __name__ == '__main__':
 
     path = input()
 
-    result = countingValleys(steps, path)
+    result = counting_valleys(steps, path)
 
     fptr.write(str(result) + '\n')
 

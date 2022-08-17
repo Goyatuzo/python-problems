@@ -21,13 +21,16 @@ def subarray_division(s, d, m):
 
     segment_sum = sum(s[:m])
 
+    if segment_sum == d:
+        segment_count += 1
+
     for i in range(m, len(s)):
-        print(segment_sum)
+        segment_sum -= s[i-m]
+        segment_sum += s[i]
+
         if segment_sum == d:
             segment_count += 1
 
-        segment_sum -= s[i-m]
-        segment_sum += s[i]
 
     return segment_count
 

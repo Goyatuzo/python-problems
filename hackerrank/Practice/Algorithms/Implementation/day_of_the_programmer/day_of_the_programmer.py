@@ -23,7 +23,7 @@ def day_of_the_programmer(year):
         if is_gregorian_leap_year:
             return f"12.09.{year}"
         return f"13.09.{year}"
-    else if year == 1918:
+    elif year == 1918:
         return "26.09.1918"
     else:
         if is_julian_leap_year:

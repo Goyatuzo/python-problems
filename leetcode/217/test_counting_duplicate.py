@@ -1,6 +1,6 @@
 import unittest
 
-from answer import Solution
+from counting_duplicate import Solution
 
 
 class TestContainsDuplicate(unittest.TestCase):

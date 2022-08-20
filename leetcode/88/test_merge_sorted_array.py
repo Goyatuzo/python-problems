@@ -19,7 +19,7 @@ class TestMergeSortedArray(unittest.TestCase):
         self.assertEqual(expected, s.merge(a, 1, b, 0))
 
     def test_three(self):
-        s = Solution
+        s = Solution()
         a = [0]
         b = [1]
         expected = [1]

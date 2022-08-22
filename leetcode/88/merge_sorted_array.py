@@ -7,8 +7,7 @@ class Solution:
         """
         current_len = n + m - 1
 
-        print(m)
-        print(n)
+        print(f"m: {m}, n: {n}")
 
         while n > 0:
             a_n = nums1[m - 1]

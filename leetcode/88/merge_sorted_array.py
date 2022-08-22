@@ -7,22 +7,12 @@ class Solution:
         """
         current_len = n + m - 1
 
-        print(f"m: {m}, n: {n}")
-
         while n > 0:
-            a_n = nums1[m - 1]
-            b_n = nums2[n - 1]
-
-            if m <= 0 or a_n >= b_n:
-                nums1[current_len] = a_n
-                m -= 1
-            else:
-                nums1[current_len] = b_n
+            if m <= 0 or nums1[m - 1] <= nums2[n - 1]:
+                nums1[current_len] = nums2[n - 1]
                 n -= 1
-
-            print(f"n: {current_len} val: {a_n} vs {b_n}, arr: {nums1}")
+            else:
+                nums1[current_len] = nums1[m - 1]
+                m -= 1
 
             current_len -= 1
-
-#            nums1 = []
-                

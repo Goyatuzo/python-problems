@@ -1,6 +1,6 @@
 import unittest
 
-from interection_of_two_arrays import Solution
+from intersection_of_two_arrays_two import Solution
 
 
 class TestIntersectionOfTwoArraysTwo(unittest.TestCase):

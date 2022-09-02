@@ -2,14 +2,25 @@ from typing import List
 
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        counter = {}
+        nums1.sort()
+        nums2.sort()
 
-        for num in nums1:
-            counter[num] = True
+        result = []
 
-        counter_two = {}
+        i, j = 0, 0
 
-        for num in nums2:
-            counter_two[num] = True
+        while i < len(nums1) and j < len(nums2):
+            a = nums1[i]
+            b = nums2[j]
 
-        return [key for key in counter.keys() if key in counter_two]
+            if a == b:
+                result.append(a)
+
+                i += 1
+                j += 1
+            elif a < b:
+                i += 1
+            else:
+                j += 1
+
+        return result

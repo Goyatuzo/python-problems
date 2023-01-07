@@ -6,7 +6,7 @@ def progress_bar(nums: List[int]) -> str:
 	remaining = n * k * t / 100
 
 	for i in range(n):
-		if remaining > k:
+		if remaining >= k:
 			bar[i] = str(k)
 		elif remaining < k:
 			bar[i] = str(int(remaining))

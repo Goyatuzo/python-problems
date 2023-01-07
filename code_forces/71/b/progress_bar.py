@@ -2,21 +2,21 @@ from typing import List
 
 def progress_bar(nums: List[int]) -> str:
 	[n, k, t] = nums
-	bar = [0 for _ in range(n)]
+	bar = ['' for _ in range(n)]
+	remaining = n * k * t / 100
 
 	for i in range(n):
-		print(t, k, t - k)
-		if t > k:
-			bar[i] = k
-		elif t > 0:
-			bar[i] = t
+		if remaining > k:
+			bar[i] = str(k)
+		elif remaining < k:
+			bar[i] = str(int(remaining))
 		else:
-			bar[i] = 0
-		t = max(0, t - k)
+			bar[i] = str(0)
+
+		remaining = max(0, remaining - k)
 
 	return bar
 
 
 if __name__ == '__main__':
-	for _ in range(n):
-		print(progress_bar([int(num) for num in input().split()]))
+	print(" ".join(progress_bar([int(num) for num in input().split()])))

@@ -11,10 +11,18 @@ def create_files(dir, pname):
 
 	# Make files
 	makedirs(new_test_file, exist_ok=True)
-	copy(path.join(root_dir, 'basic_files', 'basic_test.py'), path.join(new_test_file, f'{snake_case}_test.py'))
-	copy(path.join(root_dir, 'basic_files', 'basic.py'), path.join(new_test_file, f'{snake_case}.py'))
+	create_file(path.join(root_dir, 'basic_files', 'basic_test.py'), path.join(new_test_file, f'{snake_case}_test.py'), snake_case)
+	create_file(path.join(root_dir, 'basic_files', 'basic.py'), path.join(new_test_file, f'{snake_case}.py'), snake_case)
+	
 
-		
+def create_file(template_file, new_file, problem_name):
+	copy(template_file, new_file)
+
+	with open(template_file, mode='r') as inp:
+		with open(new_file, mode='w') as out:
+			for line in inp:
+				print(line)
+				out.write(line.replace('basic', problem_name))
 
 def camel_to_snake(name):
     name = sub('(.)([A-Z][a-z]+)', r'\1_\2', name)

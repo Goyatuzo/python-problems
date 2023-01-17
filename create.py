@@ -9,9 +9,11 @@ def create_files(dir, pname):
 	snake_case = camel_to_snake(pname)
 	new_test_file = path.join(root_dir, dir)
 
-	# Create test file
+	# Make files
 	makedirs(new_test_file, exist_ok=True)
-	copy(path.join(root_dir, 'basic_files', 'basic_test.py'), path.join(new_test_file, f'{snake_case}.py'))
+	copy(path.join(root_dir, 'basic_files', 'basic_test.py'), path.join(new_test_file, f'{snake_case}_test.py'))
+	copy(path.join(root_dir, 'basic_files', 'basic.py'), path.join(new_test_file, f'{snake_case}.py'))
+
 		
 
 def camel_to_snake(name):

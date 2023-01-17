@@ -21,7 +21,6 @@ def create_file(template_file, new_file, problem_name):
 	with open(template_file, mode='r') as inp:
 		with open(new_file, mode='w') as out:
 			for line in inp:
-				print(line)
 				out.write(line.replace('basic', problem_name))
 
 def camel_to_snake(name):

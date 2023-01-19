@@ -10,7 +10,7 @@ class TestLuckyNumbers(unittest.TestCase):
 		self.assertEqual(foo('47'), '47')	
 
 	def test_edge_1(self):
-		self.assertEqual(foo('4900'), '7474')
+		self.assertEqual(foo('4900'), '7447')
 
 
 

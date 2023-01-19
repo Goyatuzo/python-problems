@@ -35,22 +35,22 @@ def binary_search(numbers: List[int], target: int) -> int:
 	lo = 0
 	hi = len(numbers) - 1
 	mid = 0
+	answer = 0
 
-	while (lo + 1) < hi:
+	while lo <= hi:
 		mid = int((lo + hi) / 2)
 
 		if numbers[mid] < target:
-			lo = mid
+			lo = mid + 1
 		else:
-			hi = mid
+			answer = numbers[mid]
+			hi = mid - 1
 
-		print(lo, mid, hi, ' sets: ', numbers[mid])
-
-	return numbers[mid]
+	return answer
 
 def lucky_numbers(number: str) -> str:
 	luckies = generate_super_lucky_numbers(9)
-	return binary_search(luckies, int(number))
+	return str(binary_search(luckies, int(number)))
 
 if __name__ == '__main__':
-	print(str(lucky_numbers('4747')))
+	print(lucky_numbers('4900'))

@@ -53,4 +53,4 @@ def lucky_numbers(number: str) -> str:
 	return str(binary_search(luckies, int(number)))
 
 if __name__ == '__main__':
-	print(lucky_numbers('4900'))
+	print(lucky_numbers(input()))

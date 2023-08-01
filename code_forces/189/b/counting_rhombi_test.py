@@ -12,6 +12,11 @@ class Test_Counting_rhombi(unittest.TestCase):
     def test_self(self):
         self.assertEqual(foo(4, 4), 10)
 
+    def test_actual_4(self):
+        self.assertEqual(foo(4000, 1), 0)
+
+    def test_actual_6(self):
+        self.assertEqual(foo(15, 10), 1400)
 
 if __name__ == '__main__':
     unittest.main()

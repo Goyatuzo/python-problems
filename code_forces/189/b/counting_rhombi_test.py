@@ -9,9 +9,6 @@ class Test_Counting_rhombi(unittest.TestCase):
     def test_given_2(self):
         self.assertEqual(foo(1, 2), 0)
 
-    def test_self(self):
-        self.assertEqual(foo(4, 4), 10)
-
     def test_actual_4(self):
         self.assertEqual(foo(4000, 1), 0)
 

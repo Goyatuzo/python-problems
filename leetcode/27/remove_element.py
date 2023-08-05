@@ -9,4 +9,11 @@ def remove_element(nums: List[int], val: int) -> int:
 
             nums[i], nums[end] = nums[end], nums[i]
 
-    return end
+
+    count = 0
+
+    for n in nums:
+        if val == n:
+            count += 1
+
+    return len(nums) - count

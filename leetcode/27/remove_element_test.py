@@ -14,6 +14,11 @@ class Test_Remove_Element(unittest.TestCase):
     def test_self_1(self):
         self.assertEqual(foo([2, 2, 2, 3], 2), 1)
 
+    def test_self_2(self):
+        self.assertEqual(foo([5], 2), 1)
+
+    def test_self_3(self):
+        self.assertEqual(foo([5], 5), 0)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,19 +1,10 @@
 from typing import List
 
 def remove_element(nums: List[int], val: int) -> int:
-    end = len(nums) - 1
-    for i in range(len(nums)):
-        if nums[i] == val:
-            while end > i and nums[end] == val:
-                end -= 1
+    i = 0
+    for j in range(len(nums)):
+        if nums[j] != val:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
 
-            nums[i], nums[end] = nums[end], nums[i]
-
-
-    count = 0
-
-    for n in nums:
-        if val == n:
-            count += 1
-
-    return len(nums) - count
+    return i

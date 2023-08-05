@@ -1,18 +1,12 @@
 from typing import List
 
 def remove_element(nums: List[int], val: int) -> int:
-    count = 0
-    for i in range(len(nums) - 1):
+    end = len(nums) - 1
+    for i in range(len(nums)):
         if nums[i] == val:
-            nums[i], nums[i + 1] = nums[i + 1], nums[i]
-        else:
-            count += 1
+            while end > i and nums[end] == val:
+                end -= 1
 
+            nums[i], nums[end] = nums[end], nums[i]
 
-    for n in nums:
-        if n != val:
-            count += 1
-
-    print(nums)
-
-    return count
+    return end
